@@ -1,0 +1,30 @@
+/* ==========================================================================
+   responsive.css — cross-cutting breakpoint adjustments only.
+   Rule: component-specific responsive rules live inline in components.css
+   next to the component they affect. This file is for GLOBAL layout
+   adjustments that apply across many components (type scale, spacing).
+   ========================================================================== */
+
+/* Small phones (<380px): tighten spacing scale slightly */
+@media (max-width: 380px) {
+  :root {
+    --space-xl: 3rem;
+    --space-2xl: 4rem;
+  }
+  h1 { font-size: 1.75rem; }
+}
+
+/* Tablet */
+@media (min-width: 700px) and (max-width: 1024px) {
+  .container { padding: 0 var(--space-lg); }
+}
+
+/* Large desktop: cap line lengths for readability */
+@media (min-width: 1400px) {
+  body { font-size: 1.05rem; }
+}
+
+/* Print: strip navigation/footer chrome, keep content */
+@media print {
+  .navbar, .footer, .hero__bars { display: none !important; }
+}
