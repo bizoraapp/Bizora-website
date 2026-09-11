@@ -1,2 +1,119 @@
 [build]
   publish = "."
+
+# =============================================================================
+# SECURITY HEADERS
+# =============================================================================
+# Scope: this site has ZERO external scripts, styles, fonts or images
+# (audited Phase 8). Every resource is same-origin, which is what makes the
+# tight CSP below possible.
+#
+# CSP notes:
+#   script-src  'self' + a SHA-256 hash for the single inline JSON-LD block in
+#               index.html. 'unsafe-inline' is deliberately NOT used for
+#               scripts.
+#               ** If the JSON-LD in index.html is edited, this hash must be
+#               recalculated or the structured data will be blocked. **
+#   style-src   'unsafe-inline' IS required: the pages use inline style=""
+#               attributes (58 occurrences). Removing them would mean editing
+#               every page, which is out of scope here. Inline styles cannot
+#               execute code, so the risk is materially lower than for scripts.
+#   connect-src 'self' — js/main.js fetches components from /components/.
+#   img-src     'self' data: — data: covers any inline image use.
+#   frame-ancestors 'none' — modern clickjacking protection; X-Frame-Options
+#               is retained below for older browsers.
+#   form-action 'none' — the site has no forms at all.
+#
+# ---------------------------------------------------------------------------
+# IF/WHEN GA4 ANALYTICS IS ACTIVATED (config/site-config.js -> analytics
+# .measurementId), THIS CSP WILL BLOCK IT UNTIL UPDATED. The policy is kept
+# narrow deliberately: no analytics domains are allowed while no analytics is
+# running. To enable, add to script-src:
+#     https://www.googletagmanager.com
+# and add to connect-src:
+#     https://www.google-analytics.com https://*.analytics.google.com
+# Do not add these until analytics is actually switched on.
+# ---------------------------------------------------------------------------
+#
+# ** These headers are NOT yet validated against the live deployment. **
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-I4cTj++2NtzusFVV+U+tgSTJQH/1a375gm+QuCABfnY='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+
+# =============================================================================
+# CACHING
+# =============================================================================
+# Files under /assets carry a content hash in the filename
+# (e.g. bizora-dashboard.<hash>.webp), so a changed file always gets a NEW
+# filename and therefore a new cache entry. That is what makes caching them
+# for a year with `immutable` safe.
+#
+# ** Never overwrite an asset in place while keeping its filename. ** Browsers
+# will not re-request it for a year, so returning visitors keep seeing the old
+# file even after a successful deploy. Regenerate the hash instead.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Components are fetched at runtime by js/main.js. A positive max-age here
+# (previously 3600s) meant an updated component — like hero.html, which
+# carries the homepage screenshot — could keep serving the PREVIOUS version
+# for up to an hour after a successful deploy, since components aren't part
+# of the main HTML document and don't get a fresh fetch on every page load.
+# "no-cache" forces a fast revalidation check on every fetch (a cheap 304 if
+# unchanged), so an updated component goes live immediately on the very next
+# page load after deploy, with negligible added cost.
+[[headers]]
+  for = "/components/*"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# No [[redirects]] for internal paths: navigation uses physical /pages/*.html
+# paths, so clean-URL aliases would create duplicate indexable URLs for no
+# benefit. Canonicals and the sitemap both use the physical paths consistently.
+
+# =============================================================================
+# DOMAIN MIGRATION — permanent redirects to the canonical www host
+# =============================================================================
+# Single-hop wildcards: each old path maps directly to its exact equivalent
+# new path via :splat, so /pages/features.html -> /pages/features.html, not
+# a blind redirect to the homepage. No redirect chains — each rule below
+# resolves in one hop.
+#
+# NOTE: a [[redirects]] "from" naming a full external host only takes effect
+# for traffic arriving at a domain actually attached to this Netlify site.
+# The guileless-shortbread-d1264b.netlify.app rule below is inert unless that
+# subdomain is confirmed to be (or to have been) this site's Netlify URL —
+# flagged as REQUIRES LIVE VERIFICATION in the migration report.
+[[redirects]]
+  from = "https://guileless-shortbread-d1264b.netlify.app/*"
+  to = "https://www.bizora-cm.com/:splat"
+  status = 301
+  force = true
+
+# Bare apex -> www. Also configurable via Netlify's dashboard "primary domain"
+# toggle once both bizora-cm.com and www.bizora-cm.com are added as domains
+# for this site — this rule documents the intended behavior either way and
+# takes effect once both hosts are attached.
+[[redirects]]
+  from = "https://bizora-cm.com/*"
+  to = "https://www.bizora-cm.com/:splat"
+  status = 301
+  force = true
