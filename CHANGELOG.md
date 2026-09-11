@@ -15,6 +15,48 @@ file at the project root.
 
 ---
 
+## [1.0.3] — 2026-09-11 — SEO foundation: structured data, LCP fix, local relevance
+
+Classified as PATCH: metadata/structured-data additions and a measured
+performance-hint fix, no new pages, no redesign.
+
+**Changed:**
+- `index.html` JSON-LD — added `Organization` and `WebSite` schema, linked to
+  the existing `SoftwareApplication` via `@id`/`publisher` relationships.
+  Uses only verified facts: real name, real logo, real social handles already
+  in `config/site-config.js` (TikTok, Facebook, Instagram), and `areaServed:
+  "Cameroon"` (the site's actual established market). No fabricated address,
+  founding date, employee count, ratings, or reviews.
+- `netlify.toml` — CSP hash recomputed and verified byte-for-byte against the
+  new JSON-LD content (old hash would have silently blocked the updated
+  structured data)
+- `components/hero.html` — `fetchpriority="high"` moved from the dashboard
+  screenshot to the real photo. This wasn't a guess: I measured the actual
+  LCP element via the Performance API at desktop viewport and found the hint
+  was on the wrong image
+- `components/trust.html` — "African businesses" → "businesses in Cameroon"
+  in the trust band header. Confirmed "Cameroon" appeared zero times anywhere
+  on the homepage despite being the site's real market
+- `index.html` — "Point of Sale" → "Point of Sale (POS)" in the features grid
+  (confirmed the exact term "POS" appeared zero times in raw HTML); added 3
+  contextual internal links (FAQ, About, Support) near the final CTA —
+  confirmed homepage body content had only 3 internal links total before this
+
+**Known limitation, documented rather than fixed:** `index.html` has no
+`<h1>` in its raw, unrendered HTML — the homepage's H1 lives inside
+`components/hero.html`, fetched by JavaScript at runtime. This is a real,
+measured SEO gap (confirmed via direct inspection), but fixing it properly
+means restructuring how the hero loads, which conflicts with this phase's
+explicit "do not redesign / do not rewrite JS unnecessarily" constraints.
+Logged as a future opportunity, not fixed here.
+
+**Not changed:** CSS, JS (all 8 files confirmed byte-identical to the
+pre-phase checkpoint), sitemap.xml, robots.txt, canonical tags, the app URL
+(`bizora-cm.netlify.app`), trial CTA destination, `AggregateOffer` pricing
+data.
+
+---
+
 ## [1.0.2] — 2026-09-11 — Domain migration to www.bizora-cm.com
 
 Classified as PATCH: infrastructure/configuration change, no new pages, no
