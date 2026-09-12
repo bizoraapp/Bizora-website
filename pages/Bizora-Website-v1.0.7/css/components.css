@@ -1,0 +1,1290 @@
+/* ==========================================================================
+   components.css — styles scoped to individual components.
+   Rule: each block below maps 1:1 to a file in /components.
+   Do not mix unrelated component styles into the same block.
+   ========================================================================== */
+
+/* ---- Navbar (components/navbar.html) ---- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  color: var(--color-navy-deep);
+}
+
+.navbar__brand img { height: 34px; width: auto; }
+
+.navbar__links {
+  display: none;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.navbar__links a {
+  font-weight: 500;
+  color: var(--color-ink);
+  transition: color var(--transition-fast);
+}
+
+.navbar__links a:hover { color: var(--color-navy); }
+
+.navbar__actions { display: flex; align-items: center; gap: var(--space-sm); }
+
+.navbar__toggle {
+  display: flex;
+  background: none;
+  border: none;
+  padding: 0.4rem;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-navy-deep);
+  margin: 4px 0;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.navbar__mobile-panel {
+  display: none;
+  flex-direction: column;
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+
+.navbar__mobile-panel.is-open { display: flex; }
+
+.navbar__mobile-panel a {
+  padding: var(--space-xs) 0;
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__mobile-panel a:last-child { border-bottom: none; }
+
+@media (min-width: 860px) {
+  .navbar__links { display: flex; }
+  .navbar__toggle { display: none; }
+  .navbar__mobile-panel { display: none !important; }
+}
+
+/* ---- Hero (components/hero.html) ---- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-page) 100%);
+}
+
+/* Hero layout: copy first, then a full-width screenshot (large enough to
+   actually read), then the CTAs below it. A single centered column works at
+   every breakpoint, so there's no separate mobile/desktop hero structure to
+   keep in sync. */
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-2xl) var(--space-md);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero__copy {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-navy);
+  background: rgba(18, 59, 114, 0.08);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: var(--space-sm);
+}
+
+.hero__title { font-size: clamp(2rem, 5vw, 3.25rem); max-width: 16ch; }
+
+.hero__subtitle {
+  font-size: var(--fs-lg);
+  max-width: 52ch;
+  margin-bottom: 0;
+}
+
+.hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm); }
+
+.hero__trustline {
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+/* Groups the trust line(s) and the WhatsApp contact prompt together with
+   tight internal spacing, so they read as one supporting block under the
+   CTAs instead of each inheriting the hero's larger inter-section gap. */
+.hero__extra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hero__whatsapp {
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+/* Secondary, low-emphasis contact link — deliberately not styled as a
+   button so it never competes with the primary download CTA above it.
+   Padding + min-height keep the tap target comfortable on mobile. */
+.hero__whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.3rem;
+  padding: 0.35rem 0.6rem;
+  min-height: 44px;
+  color: #128C4A;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.hero__whatsapp-link:hover,
+.hero__whatsapp-link:focus-visible {
+  background: rgba(37, 211, 102, 0.12);
+}
+
+/* Real-device photo, placed between the copy and the dashboard screenshot so
+   visitors see the product in a physical setting before the close-up UI shot. */
+.hero__photo {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.hero__photo img { width: 100%; height: auto; display: block; }
+
+.hero__visual {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.hero__visual img { width: 100%; height: auto; display: block; }
+
+@media (min-width: 700px) {
+  .hero__inner { padding: var(--space-2xl) var(--space-lg); }
+}
+
+/* Above tablet width, let the screenshot bleed wider than the site's
+   standard content column so the dashboard reads clearly at a glance
+   instead of shrinking to fit a narrower measure. */
+@media (min-width: 1100px) {
+  .hero__inner { max-width: 1240px; }
+}
+
+/* ---- Footer (components/footer.html) ---- */
+.footer {
+  background: var(--color-navy-deep);
+  color: rgba(255, 255, 255, 0.75);
+  padding: var(--space-xl) 0 var(--space-md);
+}
+
+.footer__grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--space-lg);
+}
+
+.footer__brand { color: var(--color-white); font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); }
+.footer__col h4 { color: var(--color-white); font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: var(--space-sm); }
+.footer__col a { display: block; padding: 0.3rem 0; color: rgba(255,255,255,0.75); transition: color var(--transition-fast); }
+.footer__col a:hover { color: var(--color-gold-light); }
+
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+}
+
+@media (min-width: 700px) {
+  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+}
+
+/* ---- Feature card (used by components/features.html grid) ---- */
+.feature-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  /* Resting elevation. Previously the card had a shadow ONLY on hover, which
+     never fires on touch devices, so on phones the cards read as flat
+     outlines. */
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.feature-card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+
+.feature-card__icon {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  background: rgba(217, 166, 46, 0.12);
+  color: var(--color-navy-deep);
+  margin-bottom: var(--space-sm);
+  font-size: var(--fs-lg);
+}
+
+.features-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1000px) {
+  .features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---- Pricing card (components/pricing-card.html) ---- */
+.pricing-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.pricing-card--featured {
+  border-color: var(--color-gold);
+  border-width: 2px;
+  box-shadow: var(--shadow-card-hover);
+  position: relative;
+}
+
+.pricing-card__price {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  color: var(--color-navy-deep);
+  font-weight: 700;
+  margin: var(--space-sm) 0;
+}
+
+/* ==========================================================================
+   The following blocks map to components added in the second build pass:
+   problem-solution.html, trust.html, how-it-works.html, pricing.html,
+   support.html. Each block is self-contained per the same rule as above.
+   ========================================================================== */
+
+/* ---- Problem/Solution (components/problem-solution.html) ---- */
+.ps-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.ps-pair {
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: 1fr;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.ps-problem, .ps-solution {
+  padding: var(--space-md);
+}
+
+.ps-problem {
+  background: var(--color-cloud);
+}
+
+.ps-problem p { color: var(--color-ink); margin: 0; font-size: var(--fs-base); line-height: 1.5; }
+
+.ps-solution {
+  background: var(--color-white);
+  border-top: 1px solid var(--color-border);
+}
+
+.ps-solution p { color: var(--color-ink); font-weight: 500; margin: 0; font-size: var(--fs-base); line-height: 1.5; }
+
+.ps-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  /* Mirrors the .feature-card h3 treatment (24px / Sora / navy) so the
+     problem-solution pairs carry the same heading weight as the cards. */
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0;
+  color: var(--color-navy-deep);
+  margin-bottom: var(--space-sm);
+}
+
+.ps-tag--problem { color: var(--color-navy-deep); }
+.ps-tag--solution { color: var(--color-navy-deep); }
+
+/* The tick keeps the green "solved" signal at heading scale. */
+.ps-tag--solution::first-letter { color: var(--color-success); }
+
+@media (min-width: 700px) {
+  .ps-pair { grid-template-columns: 1fr 1fr; }
+  .ps-solution { border-top: none; border-left: 1px solid var(--color-border); }
+}
+
+/* ---- Homepage showcase (real usage photo + copy, index.html only) ---- */
+.showcase__grid {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.showcase__visual img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  display: block;
+}
+
+@media (min-width: 860px) {
+  .showcase__grid { grid-template-columns: 1.05fr 1fr; gap: var(--space-xl); }
+}
+
+/* ---- Trust band (components/trust.html) ---- */
+.trust-band {
+  background: var(--color-navy-deep);
+  padding: var(--space-2xl) 0;
+}
+
+.section-header--dark h2 { color: var(--color-white); }
+.section-header--dark p { color: rgba(255, 255, 255, 0.7); }
+
+.trust-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+.trust-item {
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.trust-item__icon {
+  width: 52px; height: 52px;
+  margin: 0 auto var(--space-sm);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(217, 166, 46, 0.15);
+  font-size: var(--fs-xl);
+}
+
+.trust-item h3 { color: var(--color-white); font-size: var(--fs-lg); }
+.trust-item p { color: rgba(255, 255, 255, 0.65); font-size: var(--fs-sm); }
+
+@media (min-width: 700px) {
+  .trust-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ---- How It Works (components/how-it-works.html) ---- */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  counter-reset: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 var(--space-sm);
+}
+
+.step__number {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+  color: var(--color-navy-deep);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-sm);
+}
+
+@media (min-width: 900px) {
+  .steps {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+  .step { flex: 1; }
+  .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: calc(50% + 34px);
+    width: calc(100% - 34px);
+    border-top: 2px dotted var(--color-border);
+  }
+}
+
+/* ---- Pricing (components/pricing.html) ---- */
+.pricing-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.pricing-card__features {
+  text-align: left;
+  margin: var(--space-md) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--color-ink-soft);
+  font-size: var(--fs-sm);
+}
+
+.pricing-card--featured::before {
+  content: "Recommended";
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.pricing-renewal-note {
+  text-align: center;
+  max-width: 52ch;
+  margin: var(--space-lg) auto 0;
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+}
+
+@media (min-width: 700px) {
+  .pricing-grid { grid-template-columns: 1fr 1fr; align-items: stretch; }
+}
+
+/* ---- Support (components/support.html) ---- */
+.support-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+}
+
+.support-whatsapp {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.support-whatsapp__icon { font-size: 2.5rem; margin-bottom: var(--space-sm); }
+
+.btn-whatsapp {
+  background: #25D366;
+  color: var(--color-white);
+  margin-top: var(--space-sm);
+}
+
+.btn-whatsapp:hover { box-shadow: var(--shadow-md); }
+
+.faq-item {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-xs);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-navy-deep);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  font-size: var(--fs-xl);
+  color: var(--color-gold);
+  transition: transform var(--transition-fast);
+}
+
+.faq-item[open] summary::after { transform: rotate(45deg); }
+
+.faq-item p { margin-top: var(--space-sm); color: var(--color-ink-soft); }
+
+@media (min-width: 900px) {
+  .support-grid { grid-template-columns: 0.9fr 1.1fr; align-items: start; }
+}
+
+/* ==========================================================================
+   Internal-page patterns (added for pages/features.html, reusable by
+   future internal pages: pricing, support, faq, about). Purely additive —
+   nothing above this block is modified.
+   ========================================================================== */
+
+/* ---- Compact page hero (no product mockup, unlike the homepage hero) ---- */
+.page-hero {
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-page) 100%);
+  padding: var(--space-2xl) 0 var(--space-lg);
+  text-align: center;
+}
+
+.page-hero h1 {
+  max-width: 20ch;
+  margin: 0 auto var(--space-sm);
+  font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+}
+
+.page-hero p {
+  max-width: 52ch;
+  margin: 0 auto var(--space-md);
+  font-size: var(--fs-lg);
+}
+
+.page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+/* ---- In-page feature quick-nav ---- */
+.feature-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-lg);
+}
+
+.feature-nav a {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-navy);
+  background: var(--color-cloud);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.feature-nav a:hover {
+  background: var(--color-navy-deep);
+  color: var(--color-white);
+}
+
+/* ---- Feature detail (alternating story layout) ---- */
+.feature-detail {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--color-border);
+  scroll-margin-top: 90px; /* keeps anchored section clear of sticky navbar */
+}
+
+.feature-detail:last-of-type { border-bottom: none; }
+
+.feature-detail__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-cloud);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  min-height: 180px;
+  font-size: 3.5rem;
+}
+
+.feature-detail__eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.feature-detail__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: var(--space-sm) 0 0;
+  padding: 0;
+  color: var(--color-ink-soft);
+  font-size: var(--fs-sm);
+}
+
+.feature-detail__list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.feature-detail__list li::before {
+  content: "✓";
+  color: var(--color-success);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ---- Financial term chips (revenue / gross profit / net profit distinction) ---- */
+.term-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--space-sm);
+}
+
+.term-chip {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-navy-deep);
+  background: rgba(217, 166, 46, 0.12);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+@media (min-width: 860px) {
+  .feature-detail {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+  .feature-detail--reverse .feature-detail__visual { order: 2; }
+  .feature-detail--reverse .feature-detail__content { order: 1; }
+}
+
+/* ==========================================================================
+   Pricing page patterns (pages/pricing.html). Purely additive.
+   The existing .pricing-card / .pricing-card--featured styles are reused
+   as-is; only the 3-column grid variant and the comparison table are new.
+   ========================================================================== */
+
+/* ---- 3-plan grid variant (homepage keeps its existing 2-col .pricing-grid) ---- */
+.pricing-grid--three {
+  max-width: var(--max-width);
+}
+
+.pricing-card__period {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  color: var(--color-ink-soft);
+  margin-top: -0.4rem;
+}
+
+/* Unconfirmed price: visually distinct so a placeholder is never mistaken
+   for a final commercial price. */
+.pricing-card__price--pending {
+  font-size: var(--fs-xl);
+  color: var(--color-ink-soft);
+  font-style: italic;
+}
+
+.pricing-card__note {
+  font-size: var(--fs-xs);
+  color: var(--color-ink-soft);
+  margin-top: var(--space-sm);
+}
+
+@media (min-width: 900px) {
+  .pricing-grid--three { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+}
+
+/* ---- Plan comparison table ---- */
+.compare-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+  font-size: var(--fs-sm);
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 0.75rem var(--space-sm);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.compare-table th:first-child,
+.compare-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.compare-table thead th {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-navy-deep);
+  background: var(--color-cloud);
+  position: sticky;
+  top: 0;
+}
+
+.compare-table tbody tr:last-child td { border-bottom: none; }
+
+/* Included marker — uses a text glyph plus screen-reader text, so plan
+   differences are never communicated by color alone. */
+.compare-yes { color: var(--color-success); font-weight: 700; }
+
+/* ---- Licensing steps ---- */
+.license-steps {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+  counter-reset: none;
+}
+
+.license-step {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.license-step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--color-navy-deep);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-xs);
+}
+
+@media (min-width: 800px) {
+  .license-steps { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ==========================================================================
+   Support page additions (pages/support.html). Purely additive.
+   The page otherwise reuses .page-hero, .features-grid, .feature-card,
+   .faq-item, .btn-whatsapp, .license-steps and .trust-band unchanged.
+   ========================================================================== */
+
+/* ---- Inline notice (used for the data-safety warning) ---- */
+.notice {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  background: rgba(217, 166, 46, 0.08);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.notice__icon { font-size: var(--fs-xl); line-height: 1; flex-shrink: 0; }
+.notice h3 { margin-bottom: 0.35rem; font-size: var(--fs-lg); }
+.notice p { margin: 0; font-size: var(--fs-sm); }
+
+/* ---- Contact card: ensures a comfortable tap target on small screens ---- */
+.contact-card__value {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-navy-deep);
+  word-break: break-word;
+  margin-bottom: var(--space-sm);
+}
+
+.contact-card .btn {
+  width: 100%;
+  min-height: 44px; /* accessible minimum touch target */
+}
+
+/* ---- Compact numbered list for the getting-started path ---- */
+.start-list {
+  counter-reset: startstep;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.start-list li {
+  counter-increment: startstep;
+  display: flex;
+  gap: var(--space-sm);
+  align-items: baseline;
+  color: var(--color-ink-soft);
+}
+
+.start-list li::before {
+  content: counter(startstep);
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-cloud);
+  border: 1px solid var(--color-border);
+  color: var(--color-navy-deep);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+
+/* ---- Hero product-screenshot placeholder ----
+   Deliberately a placeholder, not a fabricated screenshot. Replace this block
+   with a real <img> once authentic product screenshots are available. */
+.hero__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: var(--color-cloud);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-ink-soft);
+}
+
+.hero__placeholder-icon { font-size: 3rem; }
+
+.hero__placeholder-text {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* ---- FAQ page: category grouping (pages/faq.html) ----
+   Reuses .faq-item for the accordions themselves; this only adds the
+   category heading + group spacing. */
+.faq-group { margin-bottom: var(--space-lg); scroll-margin-top: 90px; }
+
+.faq-group__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-navy-deep);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-gold);
+}
+
+.faq-group__icon { font-size: var(--fs-xl); }
+
+/* ==========================================================================
+   Product screenshots (device mockups)
+   The mockup PNG/WebP already carries its own frame, transparency and drop
+   shadow, so the containers below must NOT add a card background, border,
+   clipping or a second shadow — otherwise the floating device sits inside a
+   visible box.
+   ========================================================================== */
+
+/* ---- Features page: per-section mockups ---- */
+.feature-detail__visual--shot {
+  background: none;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+.feature-detail__visual--shot img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Mobile navbar fixes
+   Two defects found during headless rendering of the screenshot work:
+   1. .navbar__toggle used display:flex with no direction, so its three bars
+      laid out in a ROW and stretched into a single line instead of stacking
+      into a hamburger icon.
+   2. The "Start Free Trial" label wrapped onto two lines on narrow screens,
+      inflating the navbar and pushing the button over the logo.
+   ========================================================================== */
+.navbar__toggle {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 44px;   /* accessible touch target */
+  min-height: 44px;
+}
+
+.navbar__actions .btn { white-space: nowrap; }
+
+@media (max-width: 520px) {
+  .navbar__brand span { font-size: var(--fs-base); }
+  .navbar__actions .btn {
+    padding: 0.6rem 0.85rem;
+    font-size: var(--fs-sm);
+  }
+}
+
+@media (max-width: 360px) {
+  /* Very narrow phones: the CTA is still reachable inside the mobile menu. */
+  .navbar__actions > .btn { display: none; }
+}
+
+/* ---- Active navigation state ----
+   The .is-active class was already being set by js/navigation.js but had no
+   styling, so the current page was never indicated. Underline + weight is used
+   rather than colour alone, so the cue does not depend on colour perception. */
+.navbar__links a.is-active {
+  color: var(--color-navy-deep);
+  font-weight: 700;
+  position: relative;
+}
+
+.navbar__links a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-gold);
+}
+
+.navbar__mobile-panel a.is-active {
+  color: var(--color-navy-deep);
+  font-weight: 700;
+}
+
+/* ---- Pricing comparison table: mobile overflow fix (Phase 9 QA) ----
+   .compare-table carried min-width:520px so the four columns stayed legible.
+   Inside .compare-wrap that was meant to scroll horizontally, but on narrow
+   viewports it still forced the whole PAGE to scroll sideways (measured 146px
+   of overflow at 360px wide). Below 640px the min-width is dropped so the
+   table reflows within the viewport; the tighter padding and smaller type
+   keep all four columns readable, and feature names simply wrap. */
+@media (max-width: 640px) {
+  .compare-table {
+    min-width: 0;
+    font-size: var(--fs-xs);
+  }
+  .compare-table th,
+  .compare-table td {
+    padding: 0.6rem 0.35rem;
+  }
+  .compare-wrap { overflow-x: visible; }
+}
+
+/* ---- Touch targets (Phase 9 QA) ----
+   Measured on a 390px viewport: the navbar CTA rendered 42px tall and FAQ
+   <summary> rows 37px, both below the ~44px minimum for comfortable tapping
+   on a phone. Raised without changing visual style noticeably. */
+.faq-item summary {
+  min-height: 44px;
+  align-items: center;
+}
+
+@media (max-width: 520px) {
+  .navbar__actions .btn { min-height: 44px; }
+}
+
+/* ---- Features grid: centre an orphan trailing card ----
+   With 7 cards in a 3-column grid the last one sits alone against the left
+   edge with two empty slots beside it. Centring it keeps the block balanced.
+   Only applies when the final card is genuinely alone on its row. */
+@media (min-width: 1000px) {
+  .features-grid > .feature-card:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
+}
+
+/* ==========================================================================
+   Card contrast pass
+   Problem: several card-bearing sections used a pure-white background while
+   the cards themselves are pure white, so only a 1px hairline separated them.
+   On low-resolution / low-contrast Android panels the cards read as flat.
+   The Design System calls for off-white section backgrounds with white cards;
+   .section--cards restores that relationship where card grids live.
+   ========================================================================== */
+.section--cards {
+  background: var(--color-page) !important;
+}
+
+/* Remaining card-like surfaces get the same resting elevation so nothing
+   on the site reads as a flat outline. */
+.license-step,
+.support-whatsapp,
+.compare-wrap {
+  box-shadow: var(--shadow-card);
+}
+
+.faq-item {
+  box-shadow: 0 1px 2px rgba(10, 31, 68, 0.05);
+}
+
+.faq-item[open] {
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-navy-soft);
+}
+
+/* Icon chip: slightly stronger tint so it reads as a distinct element
+   rather than a pale wash on cheap screens. */
+.feature-card__icon {
+  background: rgba(217, 166, 46, 0.18);
+  border: 1px solid rgba(217, 166, 46, 0.28);
+}
+
+/* ==========================================================================
+   Icon system
+   Every icon on the site is an inline SVG (currentColor stroke), replacing
+   the emoji placeholders used in the first draft. Emoji render inconsistently
+   across devices/fonts and read as unfinished content rather than a designed
+   UI; a single consistent icon set is calmer and matches the "confident
+   clarity" brand direction. Color is set per container below; size is set
+   directly on each <svg> so no separate sizing rules are needed.
+   ========================================================================== */
+.feature-card__icon,
+.feature-detail__visual,
+.faq-group__icon {
+  color: var(--color-navy-soft);
+}
+
+.trust-item__icon { color: var(--color-gold-light); }
+.notice__icon { color: var(--color-gold); }
+.install-promo__icon { color: var(--color-gold); }
+
+.feature-card__icon svg,
+.trust-item__icon svg,
+.feature-detail__visual svg,
+.notice__icon svg,
+.faq-group__icon svg,
+.install-promo__icon svg,
+.support-whatsapp__icon svg {
+  display: block;
+}
+
+.notice__icon,
+.install-promo__icon {
+  line-height: 0;
+}
+
+.support-whatsapp__icon svg {
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Install promo popup (components/install-promo.html)
+   Slide-up corner card, triggered by js/install-promo.js after scroll depth
+   or a time delay, whichever comes first. Hidden by default via the [hidden]
+   attribute so it never flashes before JS decides whether to show it.
+   ========================================================================== */
+.install-promo {
+  position: fixed;
+  z-index: 900;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  max-width: 340px;
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-hover);
+  padding: var(--space-md);
+  padding-right: calc(var(--space-md) + 1.25rem);
+  transform: translateY(24px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 320ms ease, opacity 320ms ease;
+}
+
+.install-promo.install-promo--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.install-promo__close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--color-ink-soft);
+}
+
+.install-promo__close:hover { color: var(--color-navy-deep); }
+
+.install-promo__icon { font-size: 1.75rem; flex-shrink: 0; margin-top: 2px; }
+
+.install-promo__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-navy-deep);
+  margin: 0 0 2px;
+}
+
+.install-promo__text {
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+  margin: 0 0 var(--space-sm);
+}
+
+.install-promo__cta {
+  width: 100%;
+  justify-content: center;
+  font-size: var(--fs-sm);
+  padding: 0.65rem 1rem;
+}
+
+@media (max-width: 560px) {
+  .install-promo {
+    left: var(--space-sm);
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .install-promo { transition: none; }
+}
+
+/* ---- Post-install setup subsection (components/how-it-works.html) ----
+   Sits below the four numbered steps as a distinct card, so it reads as a
+   follow-on checklist rather than a fifth step. Reuses .start-list. */
+.setup-next {
+  margin-top: var(--space-2xl);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg) var(--space-md);
+}
+
+.setup-next .section-header {
+  margin-bottom: var(--space-md);
+}
+
+.setup-next .section-header h3 {
+  font-size: var(--fs-xl);
+  color: var(--color-navy-deep);
+  margin-bottom: var(--space-xs);
+}
+
+.setup-next .start-list li {
+  color: var(--color-ink);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+}
+
+/* ---- Portrait phone shots sitting among landscape browser shots ----
+   Without a cap the tall phone frames dominate the row, so they're held to a
+   sensible width while the browser frames stay full-width. */
+.feature-detail__visual--shot img.shot--phone {
+  max-width: 300px;
+}
+
+@media (max-width: 700px) {
+  .feature-detail__visual--shot img.shot--phone { max-width: 240px; }
+}
