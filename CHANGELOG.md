@@ -15,6 +15,21 @@ file at the project root.
 
 ---
 
+## [1.0.4] — 2026-09-12 — Google Search Console verification
+
+Classified as PATCH: single meta tag addition, no content or structural change.
+
+**Changed:**
+- `index.html` — added `<meta name="google-site-verification" content="ksNt4v2_no3cqdTbx4bJWMt_zv9JGCyiOZxBIgLgulE" />` to `<head>`, immediately after the existing `site-version` tag. This is Google's HTML-tag verification method for the Search Console property `https://www.bizora-cm.com/`, created under `lesleymbommbom@gmail.com`.
+
+**Deliberately scoped to the homepage only** — Google's HTML-tag verification only checks the exact URL registered as the property (the homepage), so the tag was not added to the other 6 pages. Adding it everywhere would be unnecessary duplication.
+
+**Not changed:** CSP hash (a `<meta>` tag isn't a script and has no effect on `script-src`), all other metadata, CSS, JS, sitemap, robots.txt.
+
+**Next step (not part of this change):** once this version is deployed, return to Search Console and click **Verify**, then submit `sitemap.xml`.
+
+---
+
 ## [1.0.3] — 2026-09-11 — SEO foundation: structured data, LCP fix, local relevance
 
 Classified as PATCH: metadata/structured-data additions and a measured
