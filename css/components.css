@@ -147,6 +147,44 @@
   margin: 0;
 }
 
+/* Groups the trust line(s) and the WhatsApp contact prompt together with
+   tight internal spacing, so they read as one supporting block under the
+   CTAs instead of each inheriting the hero's larger inter-section gap. */
+.hero__extra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hero__whatsapp {
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+/* Secondary, low-emphasis contact link — deliberately not styled as a
+   button so it never competes with the primary download CTA above it.
+   Padding + min-height keep the tap target comfortable on mobile. */
+.hero__whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.3rem;
+  padding: 0.35rem 0.6rem;
+  min-height: 44px;
+  color: #128C4A;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.hero__whatsapp-link:hover,
+.hero__whatsapp-link:focus-visible {
+  background: rgba(37, 211, 102, 0.12);
+}
+
 /* Real-device photo, placed between the copy and the dashboard screenshot so
    visitors see the product in a physical setting before the close-up UI shot. */
 .hero__photo {
