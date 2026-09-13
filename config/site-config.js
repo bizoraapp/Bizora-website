@@ -121,7 +121,14 @@ const SiteConfig = {
   },
 
   nav: {
-    primaryCtaLabel: "Start 30-Day Trial",
+    // Primary CTA copy: shown wherever the CTA specifically asks the visitor
+    // to download/get Bizora (data-config-text="nav.primaryCtaLabel").
+    primaryCtaLabel: "DOWNLOAD NOW — 30 DAYS FREE",
+    // Secondary CTA copy: a shorter, contextual variant used only where a
+    // trial CTA is intentionally de-emphasized next to another primary
+    // action on the same section (data-config-text="nav.secondaryCtaLabel").
+    // Keeps the same "30 DAYS FREE" core phrase as the primary label.
+    secondaryCtaLabel: "GET BIZORA — 30 DAYS FREE",
     links: [
       { label: "Home", href: "/index.html" },
       { label: "Features", href: "/pages/features.html" },
