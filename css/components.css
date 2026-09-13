@@ -526,6 +526,10 @@
   .pricing-grid { grid-template-columns: 1fr 1fr; align-items: stretch; }
 }
 
+/* ---- WhatsApp CTA (components/whatsapp-cta.html) ---- */
+.whatsapp-cta { padding: var(--space-lg) 0; }
+.whatsapp-cta__container { max-width: 560px; }
+
 /* ---- Support (components/support.html) ---- */
 .support-grid {
   display: grid;
