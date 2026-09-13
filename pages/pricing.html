@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="site-version" content="1.0.4" />
+  <meta name="site-version" content="1.0.7" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bizora Pricing | Simple Business Management for African SMEs</title>
@@ -30,6 +30,38 @@
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/responsive.css" />
+
+  <!-- Structured data for search engines (Organization + WebSite, matching the homepage entities) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.bizora-cm.com/#organization",
+        "name": "Bizora",
+        "url": "https://www.bizora-cm.com/",
+        "logo": "https://www.bizora-cm.com/assets/logos/bizora-logo.28e13026.png",
+        "areaServed": "Cameroon",
+        "sameAs": [
+          "https://tiktok.com/@bizora.cm",
+          "https://facebook.com/Bizora.cm",
+          "https://instagram.com/bizora.cm"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.bizora-cm.com/#website",
+        "url": "https://www.bizora-cm.com/",
+        "name": "Bizora",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://www.bizora-cm.com/#organization"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -46,7 +78,7 @@
         <h1 id="pricing-hero-heading">Simple Pricing. Powerful Business Control.</h1>
         <p>Start with Bizora's free trial, then choose the plan that fits the way you run your business.</p>
         <div class="page-hero__actions">
-          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">Start 30-Day Trial</a>
+          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
           <a href="#plans" class="btn btn-secondary">See the plans</a>
         </div>
       </div>
@@ -74,7 +106,7 @@
               <li>✓ Try sales, credit, inventory, customers and reporting</li>
               <li>✓ No payment required to begin</li>
             </ul>
-            <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">Start 30-Day Trial</a>
+            <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
             <p class="pricing-card__note">The trial runs for 30 days. You'll be prompted to license Bizora to continue.</p>
           </article>
 
@@ -284,7 +316,7 @@
         <p style="max-width: 46ch; margin: 0 auto var(--space-md);">
           Start the free trial and see how it fits your business. No payment required to begin.
         </p>
-        <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">Start 30-Day Trial</a>
+        <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
       </div>
     </section>
   </main>

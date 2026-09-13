@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="site-version" content="1.0.4" />
+  <meta name="site-version" content="1.0.7" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Bizora | Business Management Built for African SMEs</title>
@@ -30,6 +30,38 @@
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/responsive.css" />
+
+  <!-- Structured data for search engines (Organization + WebSite, matching the homepage entities) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.bizora-cm.com/#organization",
+        "name": "Bizora",
+        "url": "https://www.bizora-cm.com/",
+        "logo": "https://www.bizora-cm.com/assets/logos/bizora-logo.28e13026.png",
+        "areaServed": "Cameroon",
+        "sameAs": [
+          "https://tiktok.com/@bizora.cm",
+          "https://facebook.com/Bizora.cm",
+          "https://instagram.com/bizora.cm"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.bizora-cm.com/#website",
+        "url": "https://www.bizora-cm.com/",
+        "name": "Bizora",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://www.bizora-cm.com/#organization"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -46,7 +78,7 @@
         <h1 id="about-hero-heading">Business Management Built for African SMEs</h1>
         <p>Bizora helps small businesses keep track of sales, customers, credit, inventory and financial information in one simple business management application.</p>
         <div class="page-hero__actions">
-          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">Start 30-Day Trial</a>
+          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
           <a href="#" data-config-href="contact.whatsapp" class="btn btn-secondary" data-cta="support-whatsapp" target="_blank" rel="noopener noreferrer">Contact Support</a>
         </div>
       </div>
@@ -243,7 +275,7 @@
           Start the free trial and see how Bizora fits the way you already work.
         </p>
         <div class="page-hero__actions">
-          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">Start 30-Day Trial</a>
+          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
           <a href="#" data-config-href="contact.whatsapp" class="btn btn-secondary" data-cta="support-whatsapp" target="_blank" rel="noopener noreferrer">Contact Support</a>
         </div>
       </div>

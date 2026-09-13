@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="site-version" content="1.0.4" />
+  <meta name="site-version" content="1.0.7" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bizora FAQ | Common Questions About Bizora</title>
@@ -30,6 +30,340 @@
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/responsive.css" />
+
+  <!-- Structured data for search engines (Organization + WebSite + FAQPage, mirroring the visible FAQ content below) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.bizora-cm.com/#organization",
+        "name": "Bizora",
+        "url": "https://www.bizora-cm.com/",
+        "logo": "https://www.bizora-cm.com/assets/logos/bizora-logo.28e13026.png",
+        "areaServed": "Cameroon",
+        "sameAs": [
+          "https://tiktok.com/@bizora.cm",
+          "https://facebook.com/Bizora.cm",
+          "https://instagram.com/bizora.cm"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.bizora-cm.com/#website",
+        "url": "https://www.bizora-cm.com/",
+        "name": "Bizora",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://www.bizora-cm.com/#organization"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.bizora-cm.com/pages/faq.html#faqpage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Bizora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bizora is an offline-first business management application built for African SMEs. It helps you manage sales, customers, credit and debt, inventory, receipts, reports and employee access — from one place."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I get started?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start the free trial, install Bizora on your device, then add your products and customers and begin recording sales. On Android you'll see an install prompt in your browser; on iPhone, open Bizora in Safari, tap Share, then choose Add to Home Screen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What can I manage with Bizora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sales, credit sales and customer debt, customer records, inventory, expenses, receipts, reports and financial summaries, employee access, and your business data backups."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need computer experience to use Bizora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Bizora is designed to be straightforward for business owners without technical training."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What devices does Bizora work on?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bizora installs on Android phones directly from your browser, and also works in a desktop browser. On iPhone, open Bizora in Safari, tap the Share button, then choose Add to Home Screen to get the app icon. It's designed to stay usable on lower-end devices."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Bizora on multiple devices at the same time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bizora is currently designed for one device at a time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Bizora support more than one language?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bizora supports English and French."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Bizora work offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Once installed, Bizora is designed so your core business operations continue without an internet connection — recording sales, managing stock, and tracking customer debt all work offline."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When do I actually need internet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Internet is needed for installing Bizora, receiving updates, contacting support, and any applicable online licensing or payment process. Everyday business work does not require it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will I lose anything if my network goes down mid-day?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Your work is recorded on your device as you go, so a network outage doesn't interrupt your core operations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I record both cash and credit sales?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Bizora handles cash sales and credit sales, with credit sales recorded against a customer account."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Bizora track customer debt?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Every credit sale is tied to a customer, so you can see outstanding balances, record repayments as customers pay, and review a customer's full payment history."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I see a customer's full history?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Each customer has a record showing their invoices, payments and outstanding balance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if a customer pays only part of what they owe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You record the amount they actually paid, and Bizora keeps track of the remaining balance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I manage inventory in Bizora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can keep a product catalogue with prices and cost, see current stock levels, record stock coming in, make stock adjustments, run reconciliation, and track losses in a loss register."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does stock update automatically when I make a sale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Stock from normal sales is deducted automatically — you don't need to adjust it by hand."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will Bizora warn me when stock is running low?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can set a low-stock level per product, and Bizora shows a warning when stock reaches or falls below it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What reports does Bizora provide?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sales reports and sales history, a debt ledger across your customers, a financial summary, and analytics including top products, top customers, and cash versus credit sales."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between revenue and profit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Revenue is the total value of what you've sold. Profit is what remains after subtracting what those goods cost you. Bizora reports revenue, gross profit and net profit separately rather than blending them into one figure."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I export or print a report?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Reports can be exported to a file or printed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Bizora generate receipts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Bizora generates a receipt for a sale, which you can print or share."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I print a receipt after the sale is finished?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Open the sale from your sales list and print the receipt from there."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will my business name and logo appear on receipts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The business information you set up appears on your receipts and reports."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Bizora support employees?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can give staff their own logins with roles such as Cashier, Storekeeper, Sales Representative and Supervisor, and control what each role is allowed to do."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can an employee see everything I can see?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not unless you grant every permission. Each role only sees the sections and actions you've allowed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I see what my employees have been doing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Important actions are recorded in an audit log showing who did what, and when."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the free trial work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bizora provides a free trial so you can explore the product before purchasing a license. The trial runs for 30 days, and Bizora shows you how many days remain."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I activate Bizora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "After payment you receive an activation key. In Bizora, go to Settings → License → Activate License and enter the key."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens when my license expires?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A few days before your license expires, Bizora shows a reminder with an activation button. Tapping it takes you to a secure Selar checkout, and once payment is complete, Selar automatically redirects you to WhatsApp."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What plans are available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A free trial to start, then a monthly or annual license. All plans give you the same product — the difference is the licensing period. See the pricing page for current rates."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is my business data stored?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Your business data is stored locally on your own device."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I back up my data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use the backup option in Settings to export a backup file, then keep that file somewhere safe. Backing up at the end of each business day is a good habit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Bizora recover my data if I lose my device?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bizora stores your data on your device, so recovery depends on having a backup file you saved. There is no remote or automatic recovery — this is exactly why regular backups matter."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Bizora back up to the cloud automatically?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Backups are created by you and saved where you choose."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I contact support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can reach us by WhatsApp, email or phone — all the details are on the support page."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I include when contacting support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Explain the problem clearly, mention the feature you were using, what happened and what you expected, and include a screenshot if it helps."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I get help before I buy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Get in touch with any questions during your trial or before starting one."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -46,7 +380,7 @@
         <h1 id="faq-hero-heading">Frequently Asked Questions</h1>
         <p>Find answers to common questions about Bizora, getting started, features, licensing and support.</p>
         <div class="page-hero__actions">
-          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">Start 30-Day Trial</a>
+          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" data-cta="trial" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
           <a href="#" data-config-href="contact.whatsapp" class="btn btn-secondary" data-cta="support-whatsapp" target="_blank" rel="noopener noreferrer">Contact Support</a>
         </div>
       </div>
@@ -295,7 +629,7 @@
         </p>
         <div class="page-hero__actions">
           <a href="#" data-config-href="contact.whatsapp" class="btn btn-primary" data-cta="support-whatsapp" target="_blank" rel="noopener noreferrer">Contact Support</a>
-          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-secondary" data-cta="trial" rel="noopener noreferrer">Start 30-Day Trial</a>
+          <a href="#" data-config-href="urls.trial" data-config-text="nav.secondaryCtaLabel" class="btn btn-secondary" data-cta="trial" rel="noopener noreferrer">GET BIZORA — 30 DAYS FREE</a>
         </div>
       </div>
     </section>

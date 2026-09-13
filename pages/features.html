@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="site-version" content="1.0.4" />
+  <meta name="site-version" content="1.0.7" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bizora Features | Sales, Credit, Inventory &amp; Business Management</title>
@@ -30,6 +30,38 @@
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/responsive.css" />
+
+  <!-- Structured data for search engines (Organization + WebSite, matching the homepage entities) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.bizora-cm.com/#organization",
+        "name": "Bizora",
+        "url": "https://www.bizora-cm.com/",
+        "logo": "https://www.bizora-cm.com/assets/logos/bizora-logo.28e13026.png",
+        "areaServed": "Cameroon",
+        "sameAs": [
+          "https://tiktok.com/@bizora.cm",
+          "https://facebook.com/Bizora.cm",
+          "https://instagram.com/bizora.cm"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.bizora-cm.com/#website",
+        "url": "https://www.bizora-cm.com/",
+        "name": "Bizora",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://www.bizora-cm.com/#organization"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -46,7 +78,7 @@
         <h1 id="features-hero-heading">Everything you need to run your business, in one place</h1>
         <p>From the first sale of the day to knowing exactly who owes you money — here's exactly what Bizora handles for you, in plain language.</p>
         <div class="page-hero__actions">
-          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" rel="noopener noreferrer">Start 30-Day Trial</a>
+          <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
           <a href="#feature-overview" class="btn btn-secondary">Explore the Features</a>
         </div>
       </div>
@@ -284,7 +316,7 @@
         <p style="max-width: 52ch; margin: 0 auto var(--space-md);">
           Every feature above is available to explore in your free trial. When you're ready to continue using Bizora, you can move to a licensed plan directly inside the app.
         </p>
-        <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" rel="noopener noreferrer">Start 30-Day Trial</a>
+        <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
       </div>
     </section>
 
@@ -295,7 +327,7 @@
         <p style="max-width: 46ch; margin: 0 auto var(--space-md);">
           No credit card, no internet required to get started.
         </p>
-        <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" rel="noopener noreferrer">Start 30-Day Trial</a>
+        <a href="#" data-config-href="urls.trial" data-config-text="nav.primaryCtaLabel" class="btn btn-primary" rel="noopener noreferrer">DOWNLOAD NOW — 30 DAYS FREE</a>
       </div>
     </section>
   </main>
