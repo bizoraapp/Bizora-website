@@ -9,11 +9,22 @@
 # tight CSP below possible.
 #
 # CSP notes:
-#   script-src  'self' + a SHA-256 hash for the single inline JSON-LD block in
-#               index.html. 'unsafe-inline' is deliberately NOT used for
-#               scripts.
-#               ** If the JSON-LD in index.html is edited, this hash must be
-#               recalculated or the structured data will be blocked. **
+#   script-src  'self' + one SHA-256 hash per distinct inline JSON-LD block.
+#               'unsafe-inline' is deliberately NOT used for scripts.
+#               Three distinct inline script bodies exist, so three hashes:
+#                 sha256-cBUKqITRiL06GJlsT4trN/lw2pBC6Is8jf3qNg5C/iY=
+#                   index.html (Organization + WebSite + SoftwareApplication)
+#                 sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=
+#                   pages/features.html, pages/pricing.html, pages/support.html,
+#                   pages/about.html (Organization + WebSite — identical block,
+#                   shared hash)
+#                 sha256-7WgPfcwEVDpkC9LNkwOFTkJ6dPjUioL+1TjKI/nQHCU=
+#                   pages/faq.html (Organization + WebSite + FAQPage)
+#               ** If any of these JSON-LD blocks is edited, ITS hash must be
+#               recalculated (byte-for-byte, exact content between the
+#               <script> tags) or that page's structured data will be
+#               silently blocked — the browser drops the script, no console
+#               warning most users would notice, no error visible on the page. **
 #   style-src   'unsafe-inline' IS required: the pages use inline style=""
 #               attributes (58 occurrences). Removing them would mean editing
 #               every page, which is out of scope here. Inline styles cannot
@@ -39,7 +50,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-cBUKqITRiL06GJlsT4trN/lw2pBC6Is8jf3qNg5C/iY='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-cBUKqITRiL06GJlsT4trN/lw2pBC6Is8jf3qNg5C/iY=' 'sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=' 'sha256-7WgPfcwEVDpkC9LNkwOFTkJ6dPjUioL+1TjKI/nQHCU='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"

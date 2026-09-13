@@ -15,6 +15,110 @@ file at the project root.
 
 ---
 
+## [1.0.7] — 2026-09-12 — Homepage hero: WhatsApp contact prompt
+
+Classified as PATCH: one small addition to the existing hero section, no new
+pages, no redesign, reuses the site's existing WhatsApp destination and
+tracking category.
+
+**Changed:**
+- `components/hero.html` — added a low-emphasis "Have questions? 💬 Chat
+  with us on WhatsApp →" link directly under the hero CTA's supporting
+  copy, so visitors who aren't ready to download can still reach Bizora.
+  Wrapped it with the existing trust-line paragraphs in a new
+  `.hero__extra` container (tightens the spacing between them so the
+  addition doesn't push hero content further down the page).
+- `css/components.css` — added `.hero__extra`, `.hero__whatsapp`, and
+  `.hero__whatsapp-link` rules. The link is deliberately styled as plain
+  text (WhatsApp green, no fill/border) rather than a button, so it stays
+  visually secondary to the primary download CTA; padding + min-height
+  keep it comfortably tappable on mobile.
+
+**Reused, not duplicated:**
+- Destination: `SiteConfig.contact.whatsapp` (`https://wa.me/237670615459`)
+  — the same value already used by the footer, support page, and FAQ
+  "Contact Support" links. No new number or WhatsApp URL was introduced.
+- Analytics: the existing `data-cta="support-whatsapp"` attribute, so this
+  link reports through the same tracking category as every other
+  WhatsApp CTA on the site.
+
+**Explicitly not changed:** trial logic, download/install functionality,
+pricing, license logic, the footer WhatsApp link, any other page or
+section, SEO structure, or unrelated CSS.
+
+## [1.0.6] — 2026-09-12 — CTA copy overhaul: "30 Days Free" offer messaging
+
+Classified as PATCH: CTA button copy and one supporting line, no new pages,
+no redesign, no changes to trial logic, pricing, or destinations.
+
+**Changed:**
+- `config/site-config.js` — `nav.primaryCtaLabel` updated from
+  "Start 30-Day Trial" to "DOWNLOAD NOW — 30 DAYS FREE"; new
+  `nav.secondaryCtaLabel` field added ("GET BIZORA — 30 DAYS FREE") for
+  buttons intentionally styled as secondary next to another primary CTA.
+  Both values are the single source driving every trial CTA button
+  sitewide via the existing `data-config-text` binding.
+- 17 primary-styled trial CTA buttons across `components/navbar.html`,
+  `components/hero.html`, `components/pricing.html`,
+  `components/how-it-works.html`, `components/install-promo.html`,
+  `index.html`, and `pages/{faq,about,features,pricing,support}.html` —
+  literal fallback text updated to match the new config value.
+- 3 secondary-styled trial CTA buttons (`pages/faq.html` bottom CTA,
+  `pages/support.html` hero and final CTA) switched to the new
+  `nav.secondaryCtaLabel` binding.
+- `components/hero.html` — added one supporting line under the homepage
+  hero buttons: "No payment. No credit card. No sign-up required to get
+  started."
+- Site-version meta tag bumped to 1.0.6 across all 7 HTML files.
+
+**Explicitly not changed:** trial duration/activation logic, pricing,
+licensing/payment flow, CTA destinations (`urls.trial`) or `data-cta`
+analytics attributes, paid-plan CTAs ("Get the Monthly/Annual License"),
+"Contact Support"/WhatsApp/email/phone CTAs, the footer "Install the app"
+link, JSON-LD, and CSP configuration.
+
+## [1.0.5] — 2026-09-12 — SEO Phase 2: FAQPage schema + sub-page entity signals
+
+Classified as PATCH: structured-data additions and a CSP allowlist update, no
+new pages, no redesign, no copy changes.
+
+**Changed:**
+- `pages/faq.html` — added `FAQPage` JSON-LD, combined into one `@graph` with
+  `Organization` + `WebSite`. Covers all 37 existing visible Q&A pairs,
+  extracted programmatically from the live `<details>/<summary>` markup and
+  verified 1:1 against the schema (same order, same wording) — no questions
+  or answers invented, no existing FAQ copy touched. Bold text and inline
+  links in answers are expressed as plain text in the schema's `text` field.
+- `pages/features.html`, `pages/pricing.html`, `pages/support.html`,
+  `pages/about.html` — added the homepage's existing `Organization` +
+  `WebSite` JSON-LD. Same `@id`s, same field values as `index.html`, reused
+  rather than reinvented. `SoftwareApplication` and the pricing `AggregateOffer`
+  deliberately excluded — that node describes the app, not these pages.
+- `netlify.toml` — `script-src` extended with two new SHA-256 hashes so the
+  new inline JSON-LD isn't silently dropped by the browser: one shared hash
+  for the four identical Organization+WebSite-only blocks, one for
+  `faq.html`'s larger block (which also carries `FAQPage`). Explanatory
+  comment above the header rewritten to document all three hashes now in
+  use and which file(s) each one covers. Existing homepage hash unchanged.
+- Version bump: `VERSION` and the `site-version` meta tag on all 7 HTML files
+  (`index.html`, `404.html`, and the 5 `pages/*.html`) updated to `1.0.5`.
+
+**Not changed:** canonical tags, `sitemap.xml`, `robots.txt`, internal
+nav/footer links (and their current URL form), H1s, page titles, meta
+descriptions, offline-capability copy anywhere on the site (hero badge,
+trust section, pricing bullets, sticky widget), About page trust content,
+image alt text, CSS, JS, homepage body content, the homepage's
+`SoftwareApplication`/`AggregateOffer` JSON-LD.
+
+**Deliberately deferred** (see the SEO Phase 2 investigation report, not
+touched in this release): the extensionless-internal-link vs.
+`.html`-canonical inconsistency across the 5 sub-pages; offline-claim
+phrasing consistency between the qualified long-form explanations and the
+shorter unqualified badges/bullets; About-page trust signals; meta
+description length on Features/About; mobile and performance validation.
+
+---
+
 ## [1.0.4] — 2026-09-12 — Google Search Console verification
 
 Classified as PATCH: single meta tag addition, no content or structural change.
