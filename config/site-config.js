@@ -81,18 +81,19 @@ const SiteConfig = {
   // provider: "ga4" is the only supported value today. Set to null to disable
   // analytics entirely.
   //
-  // measurementId: NOT YET SET. While this is null, js/analytics.js does not
-  // load any third-party script, sets no cookies, and sends nothing — events
-  // are logged to the console only. Paste a real GA4 ID (format "G-XXXXXXXXXX")
-  // here to activate.
-  //
-  // PRIVACY NOTE: enabling GA4 sets cookies. Before switching this on for
-  // visitors in jurisdictions requiring prior consent (e.g. EU/UK), a consent
-  // mechanism must be added. No consent UI exists today because, with no
-  // measurement ID, nothing is collected and no cookies are set.
+  // measurementId: ACTIVE as of 2026-09-14 (GA4 property "Bizora Website").
+    // js/analytics.js loads gtag.js, respects Do Not Track, anonymizes IP,
+    // and sends only page_view + the fixed CTA/engagement event taxonomy
+    // defined there — no PII, no business data.
+    //
+    // PRIVACY NOTE: GA4 sets cookies. No cookie-consent banner exists yet.
+    // This was enabled deliberately without one because the target market
+    // (Cameroon / CEMAC) is not subject to EU/UK prior-consent rules. If
+    // meaningful EU/UK traffic appears, add a consent mechanism before
+    // relying on this further.
   analytics: {
     provider: "ga4",
-    measurementId: null,
+    measurementId: "G-K8X7E75MK6",
     // Strips query strings and hash fragments from the reported page path so
     // no user-identifying data can leak into analytics via the URL.
     sanitizePaths: true
