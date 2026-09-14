@@ -36,21 +36,19 @@
 #   form-action 'none' — the site has no forms at all.
 #
 # ---------------------------------------------------------------------------
-# IF/WHEN GA4 ANALYTICS IS ACTIVATED (config/site-config.js -> analytics
-# .measurementId), THIS CSP WILL BLOCK IT UNTIL UPDATED. The policy is kept
-# narrow deliberately: no analytics domains are allowed while no analytics is
-# running. To enable, add to script-src:
-#     https://www.googletagmanager.com
-# and add to connect-src:
-#     https://www.google-analytics.com https://*.analytics.google.com
-# Do not add these until analytics is actually switched on.
+# GA4 ANALYTICS IS ACTIVE (config/site-config.js -> analytics
+# .measurementId is set). script-src below includes
+# https://www.googletagmanager.com and connect-src includes the GA4
+# collection domains, so gtag.js and its beacons are allowed. If analytics
+# is ever disabled again (measurementId set back to null), these CSP
+# entries can be removed too, but leaving them is harmless either way.
 # ---------------------------------------------------------------------------
 #
 # ** These headers are NOT yet validated against the live deployment. **
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-cBUKqITRiL06GJlsT4trN/lw2pBC6Is8jf3qNg5C/iY=' 'sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=' 'sha256-7WgPfcwEVDpkC9LNkwOFTkJ6dPjUioL+1TjKI/nQHCU='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-cBUKqITRiL06GJlsT4trN/lw2pBC6Is8jf3qNg5C/iY=' 'sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=' 'sha256-7WgPfcwEVDpkC9LNkwOFTkJ6dPjUioL+1TjKI/nQHCU=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
