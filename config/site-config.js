@@ -141,9 +141,9 @@ const SiteConfig = {
   },
 
   seo: {
-    defaultTitle: "Bizora — Offline Business Management for African Small and Medium Size Businesses",
+    defaultTitle: "Bizora — Point of Sale (POS) and Business Management App for African Small and Medium Size Businesses",
     defaultDescription:
-      "Bizora helps small businesses manage sales, inventory, customer debts and daily operations from one simple offline-first system.",
+      "Bizora is a point of sale (POS) and business management app that helps small and medium size businesses manage sales, receipts, inventory, customer debts and daily operations — even offline.",
     ogImage: "/assets/images/og-cover.6e3fe7b6.png"
   }
 };
