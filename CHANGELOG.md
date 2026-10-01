@@ -35,7 +35,11 @@ site. No existing page, URL or canonical changed.
 - Featured images (optional): local WebP only, ≤ 200 KB, declared size checked
   against the file; rendered with width/height and `fetchpriority="high"`
   (no lazy loading on the above-the-fold hero).
-- First article metadata (`how-to-manage-stock-in-a-small-shop`) as a draft.
+- Optional `<!--faq-->` placeholder in an article body to place the visible FAQ
+  section mid-body (default: after the body).
+- First article, `how-to-manage-stock-in-a-small-shop`, published (Inventory &
+  Stock), which makes `/articles/` indexable and adds the article and its
+  category page to the sitemap.
 
 **Changed:**
 - `components/navbar.html`, `components/footer.html` — "Articles" link.

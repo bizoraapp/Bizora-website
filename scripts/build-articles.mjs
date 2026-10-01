@@ -95,6 +95,7 @@ for (const f of readdirSync(dir).filter((f) => f.endsWith(".json") && !f.startsW
     if (typeof body !== "string" || !body.trim()) fail(`${id}: published article has no content`);
     a._body = body || "";
     if (/class="[^"]*\b(section|feature-card)\b/.test(a._body)) fail(`${id}: body must not use the scroll-reveal classes "section"/"feature-card"`);
+    if (a._body.includes("<!--faq-->") && !a.faq.length) fail(`${id}: <!--faq--> placeholder used but no faq entries`);
     if (/<h1[\s>]/i.test(a._body)) fail(`${id}: body must not contain an <h1> (the title is the H1)`);
     for (const m of a._body.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/gi)) {
       if (GENERIC_ANCHORS.test(m[1].replace(/<[^>]+>/g, "").trim())) fail(`${id}: generic link text "${m[1].trim()}"`);
@@ -329,6 +330,14 @@ ${a.faq.map((q) => `          <h3>${esc(q.question)}</h3>\n          <p>${esc(q.
 ${related.map((r) => `            <li><a href="${artUrl(r)}">${esc(r.title)}</a></li>`).join("\n")}
           </ul>
         </aside>` : "";
+  // Optional <!--faq--> placeholder: put the visible FAQ section inside the body
+  // (default: after it). Splits the body in two blocks around the FAQ.
+  const block = (html) => `          <div class="article__body">\n${html.trim()}\n          </div>`;
+  let bodyAndFaq;
+  if (a._body.includes("<!--faq-->")) {
+    const [before, after] = a._body.split("<!--faq-->");
+    bodyAndFaq = block(before) + faqHtml + (after.trim() ? "\n" + block(after) : "");
+  } else bodyAndFaq = block(a._body) + faqHtml;
   const body = `      <div class="articles__wrap">
 ${breadcrumbHtml(crumbs)}
         <article class="article">
@@ -338,9 +347,7 @@ ${breadcrumbHtml(crumbs)}
             <p class="article__meta">By <span>${esc(a.author)}</span> · Published <time datetime="${a.datePublished}">${fmtDate(a.datePublished)}</time>${modified ? ` · Updated <time datetime="${a.dateModified}">${fmtDate(a.dateModified)}</time>` : ""}</p>${a.featuredImage ? `
             <img class="article__image" src="${esc(a.featuredImage.src)}" alt="${esc(a.featuredImage.alt)}" width="${a.featuredImage.width}" height="${a.featuredImage.height}" fetchpriority="high" decoding="async" />` : ""}
           </header>
-          <div class="article__body">
-${a._body.trim()}
-          </div>${faqHtml}
+${bodyAndFaq}
         </article>${relatedHtml}
         <p class="article-back"><a href="/articles/">Back to all Bizora business guides and articles</a> · <a href="${catUrl(cat)}">More ${esc(cat.name)} guides</a></p>
       </div>`;

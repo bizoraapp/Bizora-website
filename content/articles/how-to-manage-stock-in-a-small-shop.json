@@ -7,9 +7,34 @@
   "dateModified": "2026-10-01",
   "author": "Bizora Team",
   "lang": "en",
-  "status": "draft",
+  "status": "published",
   "featuredImage": null,
   "relatedArticles": [],
-  "faq": [],
+  "faq": [
+    {
+      "question": "How often should a small shop count its stock?",
+      "answer": "There is no single schedule that works for every business. Fast-moving or high-value products may need more frequent checks, while other products may be reviewed less often. The important thing is to establish a regular stock-counting routine."
+    },
+    {
+      "question": "What should I record when buying stock?",
+      "answer": "At minimum, record the product, quantity received and relevant purchase information. Keeping the purchase or cost price can also help you understand the financial side of your stock."
+    },
+    {
+      "question": "How do I know when my stock is running low?",
+      "answer": "Set a minimum quantity for important products and monitor when the available stock approaches that level. A low-stock alert can make this easier."
+    },
+    {
+      "question": "Why doesn't my physical stock match my records?",
+      "answer": "Differences can result from unrecorded sales, damaged products, theft, counting errors, incorrect stock entries or other stock movements. Investigating the difference is important before simply changing the recorded quantity."
+    },
+    {
+      "question": "Is a notebook enough for managing stock?",
+      "answer": "A notebook can work for a very small operation with few products and transactions. As the business grows, digital tools can make it easier to organize products, record sales and monitor stock."
+    },
+    {
+      "question": "Can a POS system help with stock management?",
+      "answer": "Yes. When a POS system connects sales records with inventory records, recording a sale can also update the corresponding stock quantity. This can reduce the amount of manual stock tracking required."
+    }
+  ],
   "seo": {}
 }
