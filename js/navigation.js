@@ -26,7 +26,9 @@
       var linkPath = href.replace(/\/index\.html$/, "/");
       var match = linkPath === "/"
         ? isHome                                   // Home only on the homepage
-        : path.endsWith(linkPath.replace(/^\//, ""));
+        : linkPath === "/articles/"
+          ? /^\/articles(\/|$)/.test(path)        // /articles/, /articles/x/, /articles/category/x/
+          : path.endsWith(linkPath.replace(/^\//, ""));
 
       if (match) {
         link.classList.add("is-active");
