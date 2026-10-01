@@ -135,6 +135,8 @@ for (const f of articleFiles) {
       const same = ldFaq.mainEntity.length === a.faq.length && ldFaq.mainEntity.every((q, i) => vis.some(([vq, va]) => un(vq) === q.name && un(va) === q.acceptedAnswer.text));
       check(same, `${f}: FAQ JSON-LD matches visible FAQ text`, `${f}: FAQ JSON-LD differs from visible FAQ`);
     }
+    const img = h.match(/<img class="article__image"[^>]*>/);
+    if (img) check(/ width="\d+"/.test(img[0]) && / height="\d+"/.test(img[0]) && !/loading="lazy"/.test(img[0]) && /fetchpriority="high"/.test(img[0]) && /alt="[^"]+"/.test(img[0]), `${f}: featured image has width/height, alt, priority and is not lazy`, `${f}: featured image attributes wrong: ${img[0]}`);
     check(/<div class="article__body">\s*\S/.test(h), `${f}: article body present in static HTML`, `${f}: empty article body`);
     check(!/class="[^"]*\b(section|feature-card|reveal-init)\b/.test(h), `${f}: no scroll-reveal classes`, `${f}: uses scroll-reveal class`);
     check(!/src="[^"]*animations\.js"/.test(h), `${f}: animations.js not loaded`, `${f}: loads animations.js`);

@@ -15,7 +15,7 @@ then `node scripts/verify-site.mjs`, and commit the generated files.
 | `author` | string | yes | e.g. `Bizora Team`. |
 | `lang` | `en` \| `fr` | yes | Only `en` can be published for now. No French pages and no `hreflang` exist yet. |
 | `status` | `draft` \| `published` | yes | Only `published` articles get a page, appear in the index/category pages/sitemap, or can be linked. |
-| `featuredImage` | object \| null | no | `{ "src": "/assets/images/x.webp", "alt": "...", "width": 1200, "height": 630 }`. WebP, sized, small. |
+| `featuredImage` | object \| null | no | `{ "src": "/assets/images/x.webp", "alt": "...", "width": 1200, "height": 630 }`. Must be a local WebP under 200 KB whose declared width/height match the file (the generator checks). It is the above-the-fold hero, so it loads eagerly with `fetchpriority="high"` (not lazy). |
 | `content` | HTML string | published only | Article body (headings from `<h2>` down; the H1 is the title). If absent, `content/articles/<slug>.html` is used. Must not be empty when published. |
 | `relatedArticles` | string[] | no | Slugs of other **published** articles. If empty, up to 3 from the same category are shown. |
 | `faq` | `{question, answer}[]` | no | Plain text only. Shown on the page and, only then, emitted as FAQPage JSON-LD. |

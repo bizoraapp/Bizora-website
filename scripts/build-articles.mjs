@@ -40,6 +40,29 @@ const fmtDate = (d) => { const [y, m, day] = d.split("-").map(Number); return `$
 const errors = [];
 const fail = (m) => errors.push(m);
 
+
+/* Featured image: local WebP, declared size must match the file, and small. */
+const MAX_IMAGE_BYTES = 200 * 1024;
+function webpSize(buf) {
+  if (buf.toString("ascii", 0, 4) !== "RIFF" || buf.toString("ascii", 8, 12) !== "WEBP") return null;
+  const t = buf.toString("ascii", 12, 16);
+  if (t === "VP8 ") return [buf.readUInt16LE(26) & 0x3fff, buf.readUInt16LE(28) & 0x3fff];
+  if (t === "VP8L") { const b = buf.readUInt32LE(21); return [(b & 0x3fff) + 1, ((b >> 14) & 0x3fff) + 1]; }
+  if (t === "VP8X") return [buf.readUIntLE(24, 3) + 1, buf.readUIntLE(27, 3) + 1];
+  return null;
+}
+function checkImage(id, fi) {
+  if (!fi.src || !fi.alt || !fi.width || !fi.height) return fail(`${id}: featuredImage needs src, alt, width and height`);
+  if (!fi.src.startsWith("/assets/") || !fi.src.endsWith(".webp")) return fail(`${id}: featuredImage.src must be a local /assets/….webp file`);
+  const file = join(ROOT, fi.src);
+  if (!existsSync(file)) return fail(`${id}: featuredImage file not found: ${fi.src}`);
+  const buf = readFileSync(file);
+  if (buf.length > MAX_IMAGE_BYTES) fail(`${id}: featuredImage is ${(buf.length / 1024).toFixed(0)} KB (max ${MAX_IMAGE_BYTES / 1024} KB)`);
+  const dim = webpSize(buf);
+  if (!dim) fail(`${id}: featuredImage is not a valid WebP`);
+  else if (dim[0] !== Number(fi.width) || dim[1] !== Number(fi.height)) fail(`${id}: featuredImage declared ${fi.width}x${fi.height} but file is ${dim[0]}x${dim[1]}`);
+}
+
 /* ---------------------------------------------------------------- load */
 const categories = JSON.parse(read("content/categories.json"));
 const catBySlug = new Map(categories.map((c) => [c.slug, c]));
@@ -79,10 +102,7 @@ for (const f of readdirSync(dir).filter((f) => f.endsWith(".json") && !f.startsW
     for (const q of a.faq) if (!q || !q.question || !q.answer) fail(`${id}: each faq item needs question and answer`);
     const canon = `${SITE}/articles/${a.slug}/`;
     if (a.seo.canonical && a.seo.canonical !== canon) fail(`${id}: seo.canonical must be ${canon}`);
-    if (a.featuredImage) {
-      const fi = a.featuredImage;
-      if (!fi.src || !fi.alt || !fi.width || !fi.height) fail(`${id}: featuredImage needs src, alt, width and height`);
-    }
+    if (a.featuredImage) checkImage(id, a.featuredImage);
   }
   all.push(a);
 }
@@ -279,6 +299,9 @@ ${listHtml(items)}
 }
 
 /* ----------------------------------------------------------- article pages */
+// The featured image is the article's above-the-fold hero, so it is NOT
+// lazy-loaded: it loads eagerly with fetchpriority="high" and explicit
+// width/height (no layout shift). Articles without an image emit nothing.
 for (const a of published) {
   const path = `articles/${a.slug}/index.html`;
   const url = `${SITE}${artUrl(a)}`;
@@ -313,7 +336,7 @@ ${breadcrumbHtml(crumbs)}
             <p class="article__category"><a href="${catUrl(cat)}">${esc(cat.name)}</a></p>
             <h1>${esc(a.title)}</h1>
             <p class="article__meta">By <span>${esc(a.author)}</span> · Published <time datetime="${a.datePublished}">${fmtDate(a.datePublished)}</time>${modified ? ` · Updated <time datetime="${a.dateModified}">${fmtDate(a.dateModified)}</time>` : ""}</p>${a.featuredImage ? `
-            <img class="article__image" src="${esc(a.featuredImage.src)}" alt="${esc(a.featuredImage.alt)}" width="${a.featuredImage.width}" height="${a.featuredImage.height}" decoding="async" />` : ""}
+            <img class="article__image" src="${esc(a.featuredImage.src)}" alt="${esc(a.featuredImage.alt)}" width="${a.featuredImage.width}" height="${a.featuredImage.height}" fetchpriority="high" decoding="async" />` : ""}
           </header>
           <div class="article__body">
 ${a._body.trim()}

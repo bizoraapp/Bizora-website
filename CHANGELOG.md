@@ -32,6 +32,9 @@ site. No existing page, URL or canonical changed.
 - `css/articles.css` (Articles pages only; no `animations.js` on those pages).
 - `scripts/verify-site.mjs` — validator for existing-page integrity, SEO
   metadata, JSON-LD vs CSP hashes, sitemap, robots and internal links.
+- Featured images (optional): local WebP only, ≤ 200 KB, declared size checked
+  against the file; rendered with width/height and `fetchpriority="high"`
+  (no lazy loading on the above-the-fold hero).
 - First article metadata (`how-to-manage-stock-in-a-small-shop`) as a draft.
 
 **Changed:**
