@@ -1,0 +1,34 @@
+{
+  "pages": {
+    "index.html": {
+      "sha": "PowvcwBgn27Hudsgf7FS82h+KS9fUYlGaDsiErC/guA=",
+      "canonical": "https://www.bizora-cm.com/"
+    },
+    "pages/features.html": {
+      "sha": "qu9E6L3llw4XPRwNqcRWVC0a8+TwIKXAU51oSbsQWDU=",
+      "canonical": "https://www.bizora-cm.com/pages/features.html"
+    },
+    "pages/pricing.html": {
+      "sha": "JdVSD84DF7XraO4d5WTuff0gfVWCINqY9kQMV/dU/EM=",
+      "canonical": "https://www.bizora-cm.com/pages/pricing.html"
+    },
+    "pages/support.html": {
+      "sha": "a6oUApZSf1oglEA4OxhBKprUEyHsPEycsUXYs8ZW95s=",
+      "canonical": "https://www.bizora-cm.com/pages/support.html"
+    },
+    "pages/faq.html": {
+      "sha": "DJiyAlgPvED+0EUtOUC+tKifpKHGuPkUoGKxDv7UsqM=",
+      "canonical": "https://www.bizora-cm.com/pages/faq.html"
+    },
+    "pages/about.html": {
+      "sha": "oaCwzH4MwwVZFWhp6R8x9UVC3M4VJUvKQLTVB0btDqU=",
+      "canonical": "https://www.bizora-cm.com/pages/about.html"
+    },
+    "404.html": {
+      "sha": "/KFjRl8Qt48DETvpnw6yK7dos9nCfIWvUMZM6lmAigM=",
+      "canonical": null
+    }
+  },
+  "sitemapOriginalSha": "g6yhykx7YkEmJCSUj40vufFZsvwdzKTRg8Mcz44w0v4=",
+  "cspWithoutHashes": "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+}

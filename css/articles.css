@@ -1,0 +1,90 @@
+/* ==========================================================================
+   articles.css — Articles section only (index, category and article pages).
+   Loaded after main.css/components.css; uses their tokens. No animations,
+   no backdrop-filter, no large shadows: kept light for low-end phones.
+   ========================================================================== */
+
+.articles { padding: var(--space-md) 0 var(--space-xl); }
+.articles__wrap { max-width: 760px; margin: 0 auto; }
+.articles__wrap--wide { max-width: var(--max-width); }
+
+.breadcrumb { font-size: var(--fs-sm); margin-bottom: var(--space-md); }
+.breadcrumb ol { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; }
+.breadcrumb li + li::before { content: "/"; margin-right: 0.5rem; color: var(--color-ink-soft); }
+.breadcrumb a { color: var(--color-navy); text-decoration: underline; }
+.breadcrumb [aria-current] { color: var(--color-ink-soft); }
+
+.articles h1 { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+
+.articles__intro { font-size: var(--fs-lg); max-width: 65ch; }
+
+.article-noscript { padding: var(--space-xs) var(--space-md); background: var(--color-white); font-size: var(--fs-sm); }
+.article-noscript a { color: var(--color-navy); text-decoration: underline; margin-right: var(--space-sm); }
+
+/* ---- Article ---- */
+.article__category { font-size: var(--fs-sm); font-weight: 600; margin-bottom: var(--space-xs); }
+.article__category a { color: var(--color-navy); text-decoration: underline; }
+.article__meta { font-size: var(--fs-sm); color: var(--color-ink-soft); }
+.article__image { width: 100%; height: auto; border-radius: var(--radius-md); margin: var(--space-sm) 0; }
+
+.article__body {
+  max-width: 70ch;
+  font-size: var(--fs-lg);
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+.article__body h2 { font-size: var(--fs-xl); margin: var(--space-lg) 0 var(--space-sm); }
+.article__body h3 { font-size: var(--fs-lg); margin: var(--space-md) 0 var(--space-xs); }
+.article__body p, .article__body li { color: var(--color-ink); }
+.article__body ul, .article__body ol { margin: 0 0 var(--space-sm); padding-left: 1.4rem; }
+.article__body ul { list-style: disc; }
+.article__body ol { list-style: decimal; }
+.article__body li { margin-bottom: 0.4rem; }
+.article__body a { color: var(--color-navy); text-decoration: underline; }
+.article__body img { height: auto; border-radius: var(--radius-sm); }
+.article__body table { display: block; overflow-x: auto; border-collapse: collapse; margin-bottom: var(--space-sm); }
+.article__body th, .article__body td { border: 1px solid var(--color-border); padding: 0.4rem 0.6rem; text-align: left; }
+
+.article-faq { max-width: 70ch; margin-top: var(--space-lg); }
+.article-faq h2 { font-size: var(--fs-xl); }
+.article-faq h3 { font-size: var(--fs-lg); margin-top: var(--space-sm); }
+
+.article-related, .article-back { max-width: 70ch; margin-top: var(--space-lg); }
+.article-related h2 { font-size: var(--fs-xl); }
+.article-related li { margin-bottom: 0.5rem; }
+.article-related a, .article-back a { color: var(--color-navy); text-decoration: underline; font-weight: 600; }
+
+/* ---- Cards (index and category pages) ---- */
+.article-list { display: grid; gap: var(--space-sm); margin-top: var(--space-md); }
+.article-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+.article-card__category { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-navy); margin-bottom: 0.25rem; }
+.article-card h2 { font-size: var(--fs-lg); margin-bottom: 0.25rem; }
+.article-card h2 a:hover { text-decoration: underline; }
+.article-card__date { font-size: var(--fs-sm); margin-bottom: var(--space-xs); }
+.article-card__more { font-weight: 600; color: var(--color-navy); text-decoration: underline; }
+
+.article-cats { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-sm); }
+.article-cats a {
+  display: inline-block; padding: 0.4rem 0.8rem; min-height: 40px;
+  background: var(--color-white); border: 1px solid var(--color-border);
+  border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; color: var(--color-navy);
+}
+
+.articles-empty {
+  background: var(--color-white); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); padding: var(--space-md); margin-top: var(--space-md);
+}
+.articles-empty a { color: var(--color-navy); text-decoration: underline; font-weight: 600; }
+
+@media (min-width: 700px) {
+  .article-list { grid-template-columns: repeat(2, 1fr); }
+  .article-card { padding: var(--space-md) var(--space-md) var(--space-sm); }
+}
+@media (min-width: 1000px) {
+  .article-list { grid-template-columns: repeat(3, 1fr); }
+}

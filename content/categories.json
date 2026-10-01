@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "business-management",
+    "name": "Business Management",
+    "description": "Practical advice on running a small business day to day: organising your work, keeping simple records, planning your week and making decisions with real numbers instead of guesses. These guides are written for shop owners, traders and service providers who want more control without complicated tools."
+  },
+  {
+    "slug": "sales-pos",
+    "name": "Sales & POS",
+    "description": "Everything about selling well and recording every sale. Learn how a point of sale (POS) works, how to make a sale and issue a receipt quickly at the counter, how to handle cash, mobile money and credit sales, and how to know exactly what you sold each day."
+  },
+  {
+    "slug": "inventory-stock",
+    "name": "Inventory & Stock",
+    "description": "Know what is on your shelves, what is running low and what is not selling. These guides explain stock counting, reordering, losses and stock records in plain language, so a small shop can avoid empty shelves, wasted money and missing goods."
+  },
+  {
+    "slug": "customer-debts",
+    "name": "Customer Debts & Credit",
+    "description": "Selling on credit helps customers and grows sales, but unpaid debts can sink a small business. Find practical ways to decide who gets credit, record what each customer owes, follow up politely and collect payments without losing good customers."
+  },
+  {
+    "slug": "profit-financial-control",
+    "name": "Profit & Financial Control",
+    "description": "Sales are not profit. These guides show how to work out what your business really earns after costs and expenses, how to track cash, and how to spot money leaking out of the business, using simple methods any shop owner can follow."
+  },
+  {
+    "slug": "receipts-business-records",
+    "name": "Receipts & Business Records",
+    "description": "Good records protect your business and your customers. Learn why receipts matter, what records a small business should keep, how long to keep them, and how to store them safely, on paper or on your phone or computer."
+  },
+  {
+    "slug": "employees-access-control",
+    "name": "Employees & Access Control",
+    "description": "When staff handle sales and stock, clear rules protect everyone. Read how to give each employee the right level of access, track who did what, reduce mistakes and theft, and keep your business information safe while you are away from the shop."
+  },
+  {
+    "slug": "business-software-cameroon",
+    "name": "Business Software in Cameroon",
+    "description": "Guidance on choosing and using business software that fits real conditions in Cameroon: unreliable internet, limited data bundles, phones and low-cost computers, and prices in CFA. Learn what to look for before you trust your business records to an app."
+  },
+  {
+    "slug": "business-guides",
+    "name": "Business Guides",
+    "description": "Step-by-step guides and checklists for small business owners on topics that do not fit neatly elsewhere: starting well, building good habits and growing a business step by step with the tools you already have."
+  }
+]
