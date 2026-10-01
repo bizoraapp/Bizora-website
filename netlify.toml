@@ -12,13 +12,13 @@
 #   script-src  'self' + one SHA-256 hash per distinct inline JSON-LD block.
 #               'unsafe-inline' is deliberately NOT used for scripts.
 #               Three distinct inline script bodies exist, so three hashes:
-#                 sha256-cBUKqITRiL06GJlsT4trN/lw2pBC6Is8jf3qNg5C/iY=
+#                 sha256-T4qoauOTGgtX1+e/gUdrF8qYjmAXrymMfc/tZZUZkCc=
 #                   index.html (Organization + WebSite + SoftwareApplication)
 #                 sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=
 #                   pages/features.html, pages/pricing.html, pages/support.html,
 #                   pages/about.html (Organization + WebSite — identical block,
 #                   shared hash)
-#                 sha256-7WgPfcwEVDpkC9LNkwOFTkJ6dPjUioL+1TjKI/nQHCU=
+#                 sha256-1GOAlCV9n0gOcelzoM1DZAzJapw2X6euqYzktHsIVkw=
 #                   pages/faq.html (Organization + WebSite + FAQPage)
 #               ** If any of these JSON-LD blocks is edited, ITS hash must be
 #               recalculated (byte-for-byte, exact content between the
@@ -48,7 +48,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-cBUKqITRiL06GJlsT4trN/lw2pBC6Is8jf3qNg5C/iY=' 'sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=' 'sha256-7WgPfcwEVDpkC9LNkwOFTkJ6dPjUioL+1TjKI/nQHCU=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-T4qoauOTGgtX1+e/gUdrF8qYjmAXrymMfc/tZZUZkCc=' 'sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=' 'sha256-1GOAlCV9n0gOcelzoM1DZAzJapw2X6euqYzktHsIVkw=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
