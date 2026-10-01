@@ -141,7 +141,7 @@ const SiteConfig = {
   },
 
   seo: {
-    defaultTitle: "Bizora — Offline Business Management for African SMEs",
+    defaultTitle: "Bizora — Offline Business Management for African Small and Medium Size Businesses",
     defaultDescription:
       "Bizora helps small businesses manage sales, inventory, customer debts and daily operations from one simple offline-first system.",
     ogImage: "/assets/images/og-cover.6e3fe7b6.png"
