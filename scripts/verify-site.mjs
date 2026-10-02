@@ -97,7 +97,9 @@ check(emptyCatDirs.length === 0, "no empty category pages", `empty category page
 
 /* -------------------------------------------------------------------- SEO */
 section("SEO metadata & JSON-LD");
-const allPages = [...EXISTING, ...articleFiles];
+// Pages added after the baseline (not byte-locked, but fully checked below).
+const ADDED = ["pages/demo.html"];
+const allPages = [...EXISTING, ...ADDED, ...articleFiles];
 const urlFor = (f) => f === "index.html" ? `${SITE}/` : f.startsWith("articles/") ? `${SITE}/${f.replace(/index\.html$/, "")}` : `${SITE}/${f}`;
 const titles = new Map(), canons = new Map();
 for (const f of allPages) {
@@ -105,7 +107,7 @@ for (const f of allPages) {
   const cs = canonicalOf(h);
   if (f === "404.html") continue;
   check(cs.length === 1, `${f}: exactly one canonical`, `${f}: ${cs.length} canonicals`);
-  if (f.startsWith("articles/")) check(cs[0] === urlFor(f), `${f}: canonical is ${urlFor(f)}`, `${f}: canonical ${cs[0]} != ${urlFor(f)}`);
+  if (f.startsWith("articles/") || ADDED.includes(f)) check(cs[0] === urlFor(f), `${f}: canonical is ${urlFor(f)}`, `${f}: canonical ${cs[0]} != ${urlFor(f)}`);
   if (cs[0] && canons.has(cs[0])) bad(`duplicate canonical ${cs[0]} (${canons.get(cs[0])}, ${f})`); else canons.set(cs[0], f);
   const t = (h.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
   if (titles.has(t)) bad(`duplicate <title> "${t}" (${titles.get(t)}, ${f})`); else titles.set(t, f);
@@ -178,6 +180,7 @@ const articleLocs = locs.filter((l) => l.startsWith(`${SITE}/articles`));
 check(articleLocs.length === expectedLocs.size && articleLocs.every((l) => expectedLocs.has(l)), `sitemap article URLs = published content only (${articleLocs.length})`, `sitemap article URLs ${JSON.stringify(articleLocs)} != expected ${JSON.stringify([...expectedLocs])}`);
 for (const l of articleLocs) check(l.endsWith("/"), `sitemap URL has trailing slash: ${l}`, `sitemap URL missing trailing slash: ${l}`);
 for (const d of drafts) check(!locs.some((l) => l.includes(d.slug)), `draft ${d.slug} not in sitemap`, `DRAFT in sitemap: ${d.slug}`);
+for (const f of ADDED) check(locs.includes(urlFor(f)), `${f} is in the sitemap`, `${f} is missing from the sitemap`);
 const robots = read("robots.txt");
 const disallows = [...robots.matchAll(/^Disallow:\s*(\S*)/gim)].map((m) => m[1]).filter(Boolean);
 check(!disallows.some((d) => "/articles/".startsWith(d) || d.startsWith("/articles")), "robots.txt does not block /articles/", `robots.txt blocks: ${disallows}`);

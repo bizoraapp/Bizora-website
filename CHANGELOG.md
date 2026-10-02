@@ -336,3 +336,26 @@ future versions):
 ## [Unreleased]
 
 _Future changes will be logged here before being versioned._
+
+### Interactive demo: "See Bizora in Action" (not yet released)
+
+Proposed classification: MINOR (new page), i.e. 1.2.0 when released. `VERSION`
+is intentionally not bumped yet, and the `site-version` tag on the legacy pages
+is untouched.
+
+**Added:**
+- `/pages/demo.html`: a guided, fully simulated first-customer journey
+  (download, setup, products, first sale, WhatsApp receipt) with a sample shop,
+  Back / Next / Restart, and a 01-05 progress indicator.
+- `js/demo-model.js` (pure data and calculations), `js/demo.js` (interface),
+  `css/demo.css`. No framework, no dependencies, no network calls, no storage,
+  no real Bizora data; the strict CSP is unchanged (external scripts only).
+- Tests: `tests/demo-model.test.mjs` (calculations) and
+  `tests/demo-flow.test.mjs` (real-browser end-to-end flow, 360px and desktop).
+
+**Changed:**
+- `components/hero.html` ("SEE BIZORA IN ACTION" button), `components/footer.html`
+  and `components/navbar.html` ("Demo" link) point to the demo.
+- `sitemap.xml`: `/pages/demo.html` added after the existing entries.
+- `scripts/verify-site.mjs` also checks `pages/demo.html` (canonical, JSON-LD
+  hash, sitemap, links).
