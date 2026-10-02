@@ -30,6 +30,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
+  <url>
+    <loc>https://www.bizora-cm.com/pages/demo.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
   <!-- articles:start (generated) -->
   <url>
     <loc>https://www.bizora-cm.com/articles/</loc>
