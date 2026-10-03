@@ -1,0 +1,40 @@
+{
+  "slug": "how-to-calculate-profit-in-a-small-business",
+  "title": "How to Calculate Profit in a Small Business: A Practical Guide",
+  "description": "A practical guide to calculating profit in a small business: the difference between sales, expenses and profit, gross and net profit, and common mistakes to avoid.",
+  "category": "profit-financial-control",
+  "datePublished": "2026-10-03",
+  "dateModified": "2026-10-03",
+  "author": "Bizora Team",
+  "lang": "en",
+  "status": "published",
+  "featuredImage": null,
+  "relatedArticles": [],
+  "faq": [
+    {
+      "question": "What is the simplest way to calculate profit?",
+      "answer": "A simple starting point is to subtract the cost of products sold and relevant business expenses from your sales revenue. Net Profit = Sales Revenue − Cost of Products Sold − Operating Expenses"
+    },
+    {
+      "question": "Is revenue the same as profit?",
+      "answer": "No. Revenue is the money generated from sales. Profit is what remains after the relevant costs and expenses are deducted."
+    },
+    {
+      "question": "Does a credit sale count as revenue?",
+      "answer": "A credit sale is still a sale and should be recorded. However, the customer may not have paid the full amount yet, so your sales records and cash records should be tracked separately."
+    },
+    {
+      "question": "Should I include stock that I have not sold when calculating profit?",
+      "answer": "Generally, products that remain in inventory have not yet been sold. Your profit calculation should distinguish inventory purchases from the cost associated with products that were actually sold."
+    },
+    {
+      "question": "How often should a small business calculate profit?",
+      "answer": "Many small businesses can benefit from reviewing financial information regularly, such as monthly. The appropriate frequency depends on the business and how frequently its sales, expenses, and inventory change."
+    },
+    {
+      "question": "Can a POS system help me track profit?",
+      "answer": "A POS or business management system can help by keeping sales, inventory, expenses, and other business records organized. The usefulness of the resulting profit information depends on the accuracy and completeness of the records entered."
+    }
+  ],
+  "seo": {}
+}

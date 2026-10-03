@@ -356,3 +356,57 @@ test("16. keyboard users can drive the demo with Tab and Enter", { skip }, async
   assert.match(await txt(page, ".splash__ok"), /Business profile ready/);
   await ctx.close();
 });
+
+test("17. visitors are told the demo is interactive, and the cue follows their progress", { skip }, async () => {
+  const { ctx, page } = await open();
+  assert.match(await page.locator(".demo-hero__note").textContent(), /This is not a video\. Tap the buttons inside the phone/);
+  assert.match(await txt(page, "#demo-try"), /This is not a video\. Tap the gold buttons inside the phone/);
+  assert.equal(await page.locator("#demo-try.is-started").count(), 0);
+  await page.click("#demo-download");
+  assert.match(await txt(page, "#demo-try"), /Keep tapping the gold button inside the phone/);
+  assert.equal(await page.locator("#demo-try.is-started").count(), 1);
+  await page.click("#demo-restart");
+  assert.match(await txt(page, "#demo-try"), /This is not a video/, "Restart brings the first-time cue back");
+  await ctx.close();
+});
+
+test("18. the home page hero line 'Point of Sale (POS) and Business Management App' is ALL CAPS, heavy, large and gold", { skip }, async () => {
+  const { ctx, page } = await open({ width: 390, height: 844 });
+  await page.goto(srv.base + "/index.html");
+  await page.waitForSelector(".hero__kicker");
+  const s = await page.locator(".hero__kicker").evaluate((el) => {
+    const c = getComputedStyle(el);
+    return { text: el.textContent.trim(), shown: el.innerText, weight: Number(c.fontWeight), size: parseFloat(c.fontSize), color: c.color, bg: c.backgroundColor, upper: c.textTransform };
+  });
+  assert.equal(s.text, "Point of Sale (POS) and Business Management App", "the source text stays in normal case (better for screen readers and search)");
+  assert.equal(s.upper, "uppercase");
+  assert.equal(s.shown, "POINT OF SALE (POS) AND BUSINESS MANAGEMENT APP", "what visitors see is all capitals");
+  assert.ok(s.weight >= 800, `heavy (weight ${s.weight})`);
+  assert.ok(s.size >= 22, `large (${s.size}px)`);
+  assert.equal(s.color, "rgb(217, 166, 46)", "brand gold");
+  assert.equal(s.bg, "rgb(10, 31, 68)", "on the deep navy brand colour, so the gold stays readable");
+  const box = await page.locator(".hero__kicker").boundingBox();
+  assert.ok(box.x >= 0 && box.x + box.width <= 390, "the hero line fits inside the screen");
+  await ctx.close();
+});
+
+test("19. the navbar never overlaps itself: logo, links and the download button at common widths", { skip }, async () => {
+  for (const width of [360, 390, 412, 600, 1000, 1159, 1160, 1280, 1440, 1920]) {
+    const { ctx, page } = await open({ width, height: 800 });
+    await page.goto(srv.base + "/index.html");
+    await page.waitForSelector(".navbar__links a", { state: "attached" });
+    const m = await page.evaluate(() => {
+      const r = (s) => document.querySelector(s).getBoundingClientRect();
+      const shown = getComputedStyle(document.querySelector(".navbar__links")).display !== "none";
+      return { shown, brandR: r(".navbar__brand").right, linksL: shown ? r(".navbar__links").left : null, linksR: shown ? r(".navbar__links").right : null, actL: r(".navbar__actions").left, sw: document.documentElement.scrollWidth };
+    });
+    if (m.shown) {
+      assert.ok(m.brandR + 8 <= m.linksL, `${width}px: links run into the logo`);
+      assert.ok(m.linksR + 8 <= m.actL, `${width}px: links run into the download button`);
+    } else {
+      assert.ok(m.brandR + 8 <= m.actL, `${width}px: menu/button run into the logo`);
+    }
+    assert.ok(m.sw <= width, `${width}px: page scrolls sideways (${m.sw}px wide)`);
+    await ctx.close();
+  }
+});

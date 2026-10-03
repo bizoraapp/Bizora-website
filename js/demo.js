@@ -49,7 +49,7 @@
     complete: { step: 6, doing: "That is the whole journey, from an empty business to a shared receipt.", next: "Start your free trial, or restart the demo." }
   };
 
-  var state, history, timers = [], busy = false, instant = false;
+  var state, history, timers = [], busy = false, instant = false, touched = false;
   var els = {};
 
   function esc(s) {
@@ -70,6 +70,7 @@
     cancelTimers();
     state = { screen: "download", model: M.initialState(), toast: "" };
     history = [];
+    touched = false;
     instant = false;
     render();
   }
@@ -410,8 +411,16 @@
     var title = cur > 5 ? "Done" : "Step " + cur + " of 5 · " + STEPS[cur - 1].label;
     els.guide.innerHTML = '<button type="button" class="demo__restart" id="demo-restart">Restart demo</button>' +
       '<p class="guide__step" id="demo-step-title">' + esc(title) + "</p>" +
-      '<p class="guide__row"><span>You are doing</span>' + esc(meta.doing) + "</p>" +
+      '<p class="guide__row guide__row--doing"><span>You are doing</span>' + esc(meta.doing) + "</p>" +
       '<p class="guide__row"><span>What happens next</span>' + esc(meta.next) + "</p>";
+    // "this is interactive" cue
+    var done = cur > 5;
+    els.try.classList.toggle("is-started", touched || done);
+    els.tryText.textContent = done
+      ? "You did it! You just ran a shop on Bizora."
+      : touched
+        ? "Nice! Keep tapping the gold button inside the phone, or use Next."
+        : "This is not a video. Tap the gold buttons inside the phone to try Bizora yourself.";
     // controls
     var auto = autoAction();
     els.back.disabled = history.length === 0;
@@ -427,6 +436,7 @@
   function build() {
     host.innerHTML =
       '<div class="container demo__inner">' +
+      '<p class="demo__try" id="demo-try" role="status"><span class="demo__try-icon" aria-hidden="true">👆</span><span id="demo-try-text"></span></p>' +
       '<ol class="stepper" id="demo-stepper" aria-label="Demo progress"></ol>' +
       '<div class="demo__layout"><div class="demo__guide" id="demo-guide" aria-live="polite"></div>' +
       '<div class="demo__device"><div class="phone"><div class="phone__screen" id="demo-screen" role="region" aria-label="Bizora demo screen" tabindex="-1"></div></div>' +
@@ -436,15 +446,18 @@
       '<p class="demo__note">Simulated demo with sample data. Nothing is downloaded, installed, printed or sent.</p></div></div></div>';
     els.stepper = host.querySelector("#demo-stepper");
     els.guide = host.querySelector("#demo-guide");
+    els.try = host.querySelector("#demo-try");
+    els.tryText = host.querySelector("#demo-try-text");
     els.screen = host.querySelector("#demo-screen");
     els.back = host.querySelector("#demo-back");
     els.next = host.querySelector("#demo-next");
     host.addEventListener("click", function (e) { if (e.target.closest("#demo-restart")) ACTIONS.restart(); });
     els.back.addEventListener("click", back);
-    els.next.addEventListener("click", function () { var a = autoAction(); if (a) a.run(); });
+    els.next.addEventListener("click", function () { var a = autoAction(); if (a) { touched = true; a.run(); } });
     els.screen.addEventListener("click", function (e) {
       var t = e.target.closest("[data-act]");
       if (!t || t.disabled) return;
+      touched = true;
       var act = t.getAttribute("data-act"), id = t.getAttribute("data-id");
       if (act === "setQty") return ACTIONS.setQty(id, Number(t.getAttribute("data-qty")));
       if (act === "addToCart") return ACTIONS.addToCart(id);
