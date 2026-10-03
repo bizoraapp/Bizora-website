@@ -345,6 +345,13 @@ _Future changes will be logged here before being versioned._
 - Article `/articles/what-is-a-point-of-sale-pos-system/` (Sales & POS) and the new
   category page `/articles/category/sales-pos/`.
 
+### Demo asset versioning (not yet released)
+
+- `pages/demo.html` links `demo.css`, `demo-model.js` and `demo.js` with a content-based
+  `?v=` stamp (`scripts/version-demo-assets.mjs`), so returning visitors get updated demo
+  files immediately instead of a copy cached for up to 24 hours. A test fails if the stamp
+  is out of date.
+
 ### Interactive demo: "See Bizora in Action" (not yet released)
 
 Proposed classification: MINOR (new page), i.e. 1.2.0 when released. `VERSION`
