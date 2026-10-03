@@ -1,0 +1,40 @@
+{
+  "slug": "what-is-a-point-of-sale-pos-system",
+  "title": "What Is a Point of Sale (POS) System? A Practical Guide for Small Shops",
+  "description": "What a point of sale (POS) system is, what it records, what you need to use one, and what to look for when choosing a POS for a small shop.",
+  "category": "sales-pos",
+  "datePublished": "2026-10-03",
+  "dateModified": "2026-10-03",
+  "author": "Bizora Team",
+  "lang": "en",
+  "status": "published",
+  "featuredImage": null,
+  "relatedArticles": [],
+  "faq": [
+    {
+      "question": "What does POS stand for?",
+      "answer": "POS stands for point of sale: the place and moment where a customer pays for a product or service."
+    },
+    {
+      "question": "Do I need internet to use a POS system?",
+      "answer": "It depends on the system. Some POS systems need a connection, while others, such as an offline-first app, keep working for your core sales work without internet."
+    },
+    {
+      "question": "Do I need a receipt printer?",
+      "answer": "No. A thermal receipt printer is useful if you want paper receipts, but many businesses also send receipts through messaging apps or save them as PDF files."
+    },
+    {
+      "question": "Can a POS system track credit sales?",
+      "answer": "A good POS can. It records the credit sale and the customer who owes the money, so you can follow up and record repayments later."
+    },
+    {
+      "question": "Is a POS the same as a cash register?",
+      "answer": "Not exactly. A cash register records payments at the counter. A POS system can also keep product, stock, customer and report information connected to each sale."
+    },
+    {
+      "question": "What is the difference between a POS and inventory software?",
+      "answer": "A POS records sales. Inventory software tracks stock. When the two are connected, making a sale can also update the stock quantity."
+    }
+  ],
+  "seo": {}
+}

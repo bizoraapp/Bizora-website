@@ -42,12 +42,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://www.bizora-cm.com/pages/point-of-sale.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- articles:start (generated) -->
   <url>
     <loc>https://www.bizora-cm.com/articles/</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bizora-cm.com/articles/category/sales-pos/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.bizora-cm.com/articles/category/inventory-stock/</loc>
@@ -63,6 +75,12 @@
   </url>
   <url>
     <loc>https://www.bizora-cm.com/articles/how-to-calculate-profit-in-a-small-business/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bizora-cm.com/articles/what-is-a-point-of-sale-pos-system/</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

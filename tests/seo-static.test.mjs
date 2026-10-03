@@ -63,3 +63,24 @@ test("both articles link to the demo and the features page with descriptive text
     assert.match(page, /<a href="\/pages\/features\.html">Bizora features page<\/a>/);
   }
 });
+
+test("the point-of-sale page is complete in the raw HTML and linked from the site", () => {
+  const pos = read("pages/point-of-sale.html");
+  assert.match(pos, /<link rel="canonical" href="https:\/\/www\.bizora-cm\.com\/pages\/point-of-sale\.html" \/>/);
+  assert.equal((pos.match(/<h1[\s>]/g) || []).length, 1);
+  assert.match(pos, /<title>Point of Sale \(POS\) App for Small Shops in Cameroon \| Bizora<\/title>/);
+  assert.equal((pos.match(/<details class="faq-item">/g) || []).length, 6, "six visible FAQs");
+  assert.equal(/FAQPage/.test(pos), false, "no FAQ structured data (it would need its own CSP hash)");
+  assert.match(read("sitemap.xml"), /<loc>https:\/\/www\.bizora-cm\.com\/pages\/point-of-sale\.html<\/loc>\s*<lastmod>/);
+  assert.match(read("components/footer.html"), /<a href="\/pages\/point-of-sale\.html">Point of sale \(POS\)<\/a>/);
+  assert.match(home, /<a href="\/pages\/point-of-sale\.html">See the Bizora point of sale \(POS\) app<\/a>/);
+});
+
+test("the Sales & POS article exists, links to the POS page and the demo, and has a visible FAQ", () => {
+  const page = read("articles/what-is-a-point-of-sale-pos-system/index.html");
+  assert.match(page, /<h1>What Is a Point of Sale \(POS\) System\? A Practical Guide for Small Shops<\/h1>/);
+  assert.match(page, /<a href="\/pages\/point-of-sale\.html">Bizora point of sale \(POS\) page<\/a>/);
+  assert.match(page, /<a href="\/pages\/demo\.html">interactive demo<\/a>/);
+  assert.equal((page.match(/<h3>[^<]*\?<\/h3>/g) || []).length >= 6, true);
+  assert.equal(existsSync(join(root, "articles/category/sales-pos/index.html")), true);
+});
