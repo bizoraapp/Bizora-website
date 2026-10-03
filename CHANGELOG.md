@@ -337,6 +337,29 @@ future versions):
 
 _Future changes will be logged here before being versioned._
 
+### French pages (not yet released)
+
+- New French pages: the home page at `/fr/` and the Point of Sale page at
+  `/fr/point-de-vente/`. They are a translation of the English pages, not a
+  machine-switch: French titles and descriptions name "point de vente (POS)" and
+  "Cameroun", prices are shown in FCFA in French format.
+- French components live in `components/fr/` (navbar, footer, WhatsApp CTA,
+  problem/solution, trust, how it works, pricing, support, install promo).
+  `js/main.js` loads them when `<html lang="fr">`; English pages are unaffected.
+  French pages load `main.js?v=fr1` so a cached copy cannot serve English parts.
+- hreflang (`fr`, `en`, `x-default`) on the French pages and on their English
+  twins (`index.html`, `pages/point-of-sale.html`), canonicals per language,
+  both French URLs added to `sitemap.xml`. English footer gained a "Français" link.
+- CSP: one new JSON-LD hash for the French Organization + WebSite block (shared
+  by both French pages); CSP directives are otherwise unchanged.
+- CSS: the French download button wraps on 521–720px screens so it cannot
+  collide with the logo (`html[lang="fr"]` only).
+- Pages that do not exist in French yet (demo, FAQ, features, pricing details,
+  articles) link to their English versions and are labelled "(en anglais)".
+- Tests: `tests/french.test.mjs`; `scripts/verify-site.mjs` checks the French
+  pages and hreflang reciprocity. Existing-page baseline re-recorded because
+  `index.html` gained hreflang links.
+
 ### Point of sale page and Sales & POS article (not yet released)
 
 - `/pages/point-of-sale.html`: dedicated "Point of Sale (POS) App for Small Shops in

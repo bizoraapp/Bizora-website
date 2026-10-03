@@ -11,7 +11,7 @@
 # CSP notes:
 #   script-src  'self' + one SHA-256 hash per distinct inline JSON-LD block.
 #               'unsafe-inline' is deliberately NOT used for scripts.
-#               Three distinct inline script bodies exist, so three hashes:
+#               Four distinct hand-maintained inline script bodies exist, so four hashes:
 #                 sha256-4vpcCdMK1HXLwf3TJG3Bvqyga/pdvhW1QaVzH6SmAxU=
 #                   index.html (Organization + WebSite + SoftwareApplication)
 #                 sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=
@@ -20,6 +20,9 @@
 #                   shared hash)
 #                 sha256-1GOAlCV9n0gOcelzoM1DZAzJapw2X6euqYzktHsIVkw=
 #                   pages/faq.html (Organization + WebSite + FAQPage)
+#                 sha256-fMOnOVyUWF+i9eyYvr2sqkT7HvWvBhRRlGVDrOnKJ2w=
+#                   fr/index.html, fr/point-de-vente/index.html
+#                   (Organization + French WebSite — identical block, shared hash)
 #               ** If any of these JSON-LD blocks is edited, ITS hash must be
 #               recalculated (byte-for-byte, exact content between the
 #               <script> tags) or that page's structured data will be
@@ -64,7 +67,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-4vpcCdMK1HXLwf3TJG3Bvqyga/pdvhW1QaVzH6SmAxU=' 'sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=' 'sha256-1GOAlCV9n0gOcelzoM1DZAzJapw2X6euqYzktHsIVkw=' 'sha256-EJwQAc577Wqr6gpH65xK/iz4+GFJDtZiikLnDIaVC6w=' 'sha256-l0y6WCBOsr2+jN427eF+EgEECnJIrO1BFDQ/KH9eUiA=' 'sha256-AykXpbc8ORuNhKK/JY+d4FVOaQyLZh0BRc8sFM+TWnM=' 'sha256-45LeRiJt7Gxhk2Lcuu+xCeXsGSyYAalRGRCMgDQAuMk=' 'sha256-iBlyNrFSkcyOgRFMKO/q+bdAyiYocIr38VDVXI0JP0k=' 'sha256-ffWHarQq0hKwus5WWFaAuFgLssxzXmp+JmZ0qghOOn0=' 'sha256-GsYb6r+KvzY75Ern1rCkeiYittoz32iFmPCBGkiacWM=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-4vpcCdMK1HXLwf3TJG3Bvqyga/pdvhW1QaVzH6SmAxU=' 'sha256-9wjUCp4+2huWeuGVeKVuajOylkVlMMr4X3vV7QTHotY=' 'sha256-1GOAlCV9n0gOcelzoM1DZAzJapw2X6euqYzktHsIVkw=' 'sha256-fMOnOVyUWF+i9eyYvr2sqkT7HvWvBhRRlGVDrOnKJ2w=' 'sha256-EJwQAc577Wqr6gpH65xK/iz4+GFJDtZiikLnDIaVC6w=' 'sha256-l0y6WCBOsr2+jN427eF+EgEECnJIrO1BFDQ/KH9eUiA=' 'sha256-AykXpbc8ORuNhKK/JY+d4FVOaQyLZh0BRc8sFM+TWnM=' 'sha256-45LeRiJt7Gxhk2Lcuu+xCeXsGSyYAalRGRCMgDQAuMk=' 'sha256-iBlyNrFSkcyOgRFMKO/q+bdAyiYocIr38VDVXI0JP0k=' 'sha256-ffWHarQq0hKwus5WWFaAuFgLssxzXmp+JmZ0qghOOn0=' 'sha256-GsYb6r+KvzY75Ern1rCkeiYittoz32iFmPCBGkiacWM=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"

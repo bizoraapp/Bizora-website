@@ -1053,6 +1053,19 @@
   .navbar__actions { gap: 0.4rem; }
 }
 
+/* The French label ("TÉLÉCHARGER — 30 JOURS GRATUITS") is longer, so it needs to
+   wrap on mid-width screens too (521–720px), not just on phones. */
+@media (min-width: 521px) and (max-width: 720px) {
+  html[lang="fr"] .navbar__actions .btn {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.72rem;
+    line-height: 1.15;
+    white-space: normal;
+    text-align: center;
+    max-width: 38vw;
+  }
+}
+
 @media (max-width: 360px) {
   /* Very narrow phones: the CTA is still reachable inside the mobile menu. */
   .navbar__actions > .btn { display: none; }

@@ -98,9 +98,9 @@ check(emptyCatDirs.length === 0, "no empty category pages", `empty category page
 /* -------------------------------------------------------------------- SEO */
 section("SEO metadata & JSON-LD");
 // Pages added after the baseline (not byte-locked, but fully checked below).
-const ADDED = ["pages/demo.html", "pages/point-of-sale.html"];
+const ADDED = ["pages/demo.html", "pages/point-of-sale.html", "fr/index.html", "fr/point-de-vente/index.html"];
 const allPages = [...EXISTING, ...ADDED, ...articleFiles];
-const urlFor = (f) => f === "index.html" ? `${SITE}/` : f.startsWith("articles/") ? `${SITE}/${f.replace(/index\.html$/, "")}` : `${SITE}/${f}`;
+const urlFor = (f) => f === "index.html" ? `${SITE}/` : (f.startsWith("articles/") || f.startsWith("fr/")) ? `${SITE}/${f.replace(/index\.html$/, "")}` : `${SITE}/${f}`;
 const titles = new Map(), canons = new Map();
 for (const f of allPages) {
   const h = read(f);
@@ -181,6 +181,20 @@ check(articleLocs.length === expectedLocs.size && articleLocs.every((l) => expec
 for (const l of articleLocs) check(l.endsWith("/"), `sitemap URL has trailing slash: ${l}`, `sitemap URL missing trailing slash: ${l}`);
 for (const d of drafts) check(!locs.some((l) => l.includes(d.slug)), `draft ${d.slug} not in sitemap`, `DRAFT in sitemap: ${d.slug}`);
 for (const f of ADDED) check(locs.includes(urlFor(f)), `${f} is in the sitemap`, `${f} is missing from the sitemap`);
+
+/* ---- French pages: hreflang pairs must be reciprocal and point at real pages ---- */
+section("French pages / hreflang");
+const PAIRS = [["index.html", "fr/index.html"], ["pages/point-of-sale.html", "fr/point-de-vente/index.html"]];
+const hreflangs = (h) => Object.fromEntries([...h.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)].map((m) => [m[1], m[2]]));
+for (const [en, fr] of PAIRS) {
+  const he = read(en), hf = read(fr);
+  const le = hreflangs(he), lf = hreflangs(hf);
+  check(/<html lang="fr">/.test(hf), `${fr}: <html lang="fr">`, `${fr}: missing lang="fr"`);
+  check(le.en === urlFor(en) && le.fr === urlFor(fr) && le["x-default"] === urlFor(en), `${en}: hreflang en/fr/x-default`, `${en}: hreflang set is wrong ${JSON.stringify(le)}`);
+  check(lf.en === urlFor(en) && lf.fr === urlFor(fr) && lf["x-default"] === urlFor(en), `${fr}: hreflang en/fr/x-default (reciprocal)`, `${fr}: hreflang set is wrong ${JSON.stringify(lf)}`);
+  check(!/data-config-text="nav\.primaryCtaLabel"/.test(hf), `${fr}: no English config text in French page`, `${fr}: uses English nav.primaryCtaLabel`);
+  check(/main\.js\?v=/.test(hf), `${fr}: main.js is version-stamped (bypasses the 24h cache)`, `${fr}: main.js not version-stamped`);
+}
 const robots = read("robots.txt");
 const disallows = [...robots.matchAll(/^Disallow:\s*(\S*)/gim)].map((m) => m[1]).filter(Boolean);
 check(!disallows.some((d) => "/articles/".startsWith(d) || d.startsWith("/articles")), "robots.txt does not block /articles/", `robots.txt blocks: ${disallows}`);

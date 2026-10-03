@@ -19,7 +19,11 @@
  */
 
 (function () {
-  const COMPONENTS_PATH = "/components/";
+  // French pages (<html lang="fr">) load their components from /components/fr/.
+  // The component names stay the same, so navigation.js and install-promo.js
+  // keep recognising "navbar" and "install-promo".
+  const COMPONENTS_PATH =
+    document.documentElement.lang === "fr" ? "/components/fr/" : "/components/";
 
   async function loadComponent(el) {
     const name = el.getAttribute("data-component");
