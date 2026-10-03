@@ -98,7 +98,7 @@ check(emptyCatDirs.length === 0, "no empty category pages", `empty category page
 /* -------------------------------------------------------------------- SEO */
 section("SEO metadata & JSON-LD");
 // Pages added after the baseline (not byte-locked, but fully checked below).
-const ADDED = ["pages/demo.html"];
+const ADDED = ["pages/demo.html", "pages/point-of-sale.html"];
 const allPages = [...EXISTING, ...ADDED, ...articleFiles];
 const urlFor = (f) => f === "index.html" ? `${SITE}/` : f.startsWith("articles/") ? `${SITE}/${f.replace(/index\.html$/, "")}` : `${SITE}/${f}`;
 const titles = new Map(), canons = new Map();

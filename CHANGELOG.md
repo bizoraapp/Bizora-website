@@ -337,6 +337,14 @@ future versions):
 
 _Future changes will be logged here before being versioned._
 
+### Point of sale page and Sales & POS article (not yet released)
+
+- `/pages/point-of-sale.html`: dedicated "Point of Sale (POS) App for Small Shops in
+  Cameroon" page (what a POS app is, counter features, first sale in four steps,
+  offline, FAQ), linked from the footer and the home page POS card; sitemap entry.
+- Article `/articles/what-is-a-point-of-sale-pos-system/` (Sales & POS) and the new
+  category page `/articles/category/sales-pos/`.
+
 ### Interactive demo: "See Bizora in Action" (not yet released)
 
 Proposed classification: MINOR (new page), i.e. 1.2.0 when released. `VERSION`
