@@ -84,3 +84,10 @@ test("the Sales & POS article exists, links to the POS page and the demo, and ha
   assert.equal((page.match(/<h3>[^<]*\?<\/h3>/g) || []).length >= 6, true);
   assert.equal(existsSync(join(root, "articles/category/sales-pos/index.html")), true);
 });
+
+test("the demo page links its CSS and JS with a content-based version, so visitors never run stale copies", async () => {
+  const { demoVersion, ASSETS } = await import("../scripts/version-demo-assets.mjs");
+  const v = demoVersion();
+  const page = read("pages/demo.html");
+  for (const a of ASSETS) assert.ok(page.includes(`/${a}?v=${v}"`), `${a} is linked with ?v=${v} (run: node scripts/version-demo-assets.mjs)`);
+});
