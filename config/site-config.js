@@ -65,9 +65,17 @@ const SiteConfig = {
     },
     annual: {
       label: "Annual License",
+      // First-year price. The license renews at renewalPrice.
       price: 12000,
       amount: "12,000 CFA",
-      period: "per year",
+      period: "first year",
+      renewalPrice: 25000,
+      renewalAmount: "25,000 CFA",
+      renewalPeriod: "per year after the first year",
+      // Savings are against paying monthly for 12 months (monthly.price x 12 = 36,000):
+      //   year 1: 36,000 - 12,000 = 24,000     renewal: 36,000 - 25,000 = 11,000
+      // tests/pricing-config.test.mjs checks this text against the numbers above.
+      note: "Save 24,000 CFA in year 1. Then 25,000 CFA/year, still 11,000 CFA less than paying monthly.",
       status: "confirmed"
     },
     // No payment/checkout URL exists yet. Paid-plan CTAs therefore route to the
