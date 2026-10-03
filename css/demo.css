@@ -7,7 +7,8 @@
 .demo-hero { padding: var(--space-lg) 0 var(--space-sm); }
 .demo-hero h1 { margin-bottom: var(--space-xs); }
 .demo-hero__quote { font-weight: 600; color: var(--color-navy-deep); }
-.demo-hero__note { font-size: var(--fs-sm); }
+.demo-hero__note { font-size: var(--fs-sm); max-width: 46ch; margin-left: auto; margin-right: auto; }
+.demo-hero__note strong { color: var(--color-navy-deep); }
 
 .demo { padding: 0 0 var(--space-xl); }
 
@@ -30,6 +31,15 @@
 .guide__row span { display: block; font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-ink-soft); }
 
 .demo__device { width: 100%; max-width: 380px; }
+
+/* "This is interactive" cue above the phone */
+.demo__try {
+  display: flex; align-items: center; gap: 0.5rem; margin: 0 auto var(--space-sm); max-width: 640px;
+  background: #FFF7E1; border: 2px solid var(--color-gold); border-radius: var(--radius-md);
+  padding: 0.55rem 0.8rem; font-size: var(--fs-sm); font-weight: 700; color: var(--color-navy-deep);
+}
+.demo__try-icon { font-size: 1.4rem; line-height: 1; }
+.demo__try.is-started { background: #EAF6EF; border-color: var(--color-success); }
 .phone { border: 9px solid var(--color-navy-deep); border-radius: 32px; background: var(--color-navy-deep); }
 .phone__screen {
   background: var(--color-white); border-radius: 22px; height: clamp(500px, 76vh, 640px);
@@ -40,6 +50,9 @@
   position: sticky; bottom: 0; z-index: 5; padding: 0.5rem 0; background: var(--color-page);
 }
 .demo-ctl { min-height: 48px; padding: 0.6rem 1rem; }
+/* The main action in the phone glows briefly (3 pulses) so visitors know to tap it. */
+@keyframes demo-pulse { 0% { box-shadow: 0 0 0 0 rgba(217, 166, 46, 0.7); } 70% { box-shadow: 0 0 0 14px rgba(217, 166, 46, 0); } 100% { box-shadow: 0 0 0 0 rgba(217, 166, 46, 0); } }
+.phone__screen .btn-primary.demo-btn:not(:disabled), .phone__screen .btn-wa.demo-btn:not(:disabled), .phone__screen .wa__send { animation: demo-pulse 1.5s ease-out 3; }
 .demo-ctl:disabled, .demo-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .demo__restart { float: right; background: none; border: 0; color: var(--color-navy); text-decoration: underline; min-height: 44px; font-weight: 600; font-size: var(--fs-sm); padding: 0 0 0 var(--space-sm); }
 .demo__note { font-size: var(--fs-xs); text-align: center; margin-top: var(--space-xs); }
@@ -141,11 +154,11 @@
 .checks li { padding: 0.25rem 0 0.25rem 1.6rem; position: relative; font-size: var(--fs-sm); }
 .checks li::before { content: "✓"; position: absolute; left: 0; color: var(--color-success); font-weight: 700; }
 
-@media (max-width: 599px) { .demo-hero__note { display: none; } .phone__screen { height: clamp(460px, calc(100vh - 190px), 640px); } }
+@media (max-width: 599px) { .guide__row--doing, .demo-hero__note { display: none; } .phone__screen { height: clamp(460px, calc(100vh - 190px), 640px); } }
 @media (min-width: 900px) {
   .demo__controls { position: static; padding: 0; background: none; }
   .demo__layout { grid-template-columns: minmax(280px, 380px) 380px; justify-content: center; align-items: start; gap: var(--space-lg); }
   .demo__guide { max-width: none; position: sticky; top: 90px; }
   .stepper__l { font-size: var(--fs-sm); }
 }
-@media (prefers-reduced-motion: reduce) { .progress__bar { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .progress__bar { transition: none; } .phone__screen .demo-btn, .phone__screen .wa__send { animation: none !important; } }

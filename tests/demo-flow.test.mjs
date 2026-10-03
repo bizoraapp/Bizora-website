@@ -356,3 +356,34 @@ test("16. keyboard users can drive the demo with Tab and Enter", { skip }, async
   assert.match(await txt(page, ".splash__ok"), /Business profile ready/);
   await ctx.close();
 });
+
+test("17. visitors are told the demo is interactive, and the cue follows their progress", { skip }, async () => {
+  const { ctx, page } = await open();
+  assert.match(await page.locator(".demo-hero__note").textContent(), /This is not a video\. Tap the buttons inside the phone/);
+  assert.match(await txt(page, "#demo-try"), /This is not a video\. Tap the gold buttons inside the phone/);
+  assert.equal(await page.locator("#demo-try.is-started").count(), 0);
+  await page.click("#demo-download");
+  assert.match(await txt(page, "#demo-try"), /Keep tapping the gold button inside the phone/);
+  assert.equal(await page.locator("#demo-try.is-started").count(), 1);
+  await page.click("#demo-restart");
+  assert.match(await txt(page, "#demo-try"), /This is not a video/, "Restart brings the first-time cue back");
+  await ctx.close();
+});
+
+test("18. the home page hero line 'Point of Sale (POS) and Business Management App' is bold, large and gold", { skip }, async () => {
+  const { ctx, page } = await open({ width: 390, height: 844 });
+  await page.goto(srv.base + "/index.html");
+  await page.waitForSelector(".hero__kicker");
+  const s = await page.locator(".hero__kicker").evaluate((el) => {
+    const c = getComputedStyle(el);
+    return { text: el.textContent.trim(), weight: Number(c.fontWeight), size: parseFloat(c.fontSize), color: c.color, upper: c.textTransform };
+  });
+  assert.equal(s.text, "Point of Sale (POS) and Business Management App");
+  assert.ok(s.weight >= 700, `bold (weight ${s.weight})`);
+  assert.ok(s.size >= 20, `larger than body text (${s.size}px)`);
+  assert.equal(s.color, "rgb(176, 125, 10)", "gold");
+  assert.equal(s.upper, "none");
+  const box = await page.locator(".hero__kicker").boundingBox();
+  assert.ok(box.x >= 0 && box.x + box.width <= 390, "the hero line fits inside the screen");
+  await ctx.close();
+});

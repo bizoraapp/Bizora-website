@@ -11,6 +11,8 @@
   --color-navy-soft: #1E4E8C;
   --color-gold: #D9A62E;
   --color-gold-light: #F0C862;
+  /* Darker gold for TEXT on light backgrounds (brand gold #D9A62E is too pale to read). */
+  --color-gold-deep: #B07D0A;
   --color-ink: #1B2430;
   --color-ink-soft: #4A5568;
   --color-cloud: #F7F8FA;
